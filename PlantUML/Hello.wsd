@@ -1,0 +1,17 @@
+@startuml
+class Person{
+  +name: String
+}
+class Person{
+  +name: String
+}
+class Person{
+  +name: String
+}
+class Person{
+  +name: String
+}
+class Person{
+  +name: String
+}
+@enduml

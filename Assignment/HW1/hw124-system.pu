@@ -1,0 +1,40 @@
+@startuml
+' Settings
+' ============================
+
+' use +,#,- instead of icons
+'skinparam classAttributeIconSize 0
+
+' horizontal distance in px
+' skinparam nodesep 60 
+
+' vertical distance in px
+' skinparam ranksep 50
+
+' use only straight lines (ortho/polyline)
+skinparam linetype ortho
+
+' title
+title 1-2-4 Smart Light System
+
+
+
+' Abstract Classes
+' ============================
+
+
+
+
+' Concrete Classes
+' ============================
+
+
+
+
+
+' Relations
+' ================================
+
+
+
+@enduml
