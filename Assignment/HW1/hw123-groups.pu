@@ -6,10 +6,10 @@
 'skinparam classAttributeIconSize 0
 
 ' horizontal distance in px
-' skinparam nodesep 60 
+skinparam nodesep 80
 
 ' vertical distance in px
-' skinparam ranksep 50
+skinparam ranksep 80
 
 ' use only straight lines (ortho/polyline)
 skinparam linetype ortho
@@ -21,20 +21,70 @@ title 1-2-3 Light Groups
 
 ' Abstract Classes
 ' ============================
+class MultipleLightBase{
+    -Name: String
+    #handle: List<SwitchLight*>
+    #configHandle: List<ConfigurableLight*>
+    +appendSwitchLight()
+    +appendConfigurableLight()
+    +setupLights()
+    +on()
+    +off()
+}
 
-
+class ConfigurableLight{
+    +configure()
+}
 
 
 ' Concrete Classes
 ' ============================
+class SwitchLight{
+    -state: on/off
+    #lightID: Integer
+    +switch(state: bool)
+}
+
+class DimmLight{
+    -brightness: Integer
+    +configure()
+}
+
+class Group{
+    '#setBrightness()
+    -brightness: Integer
+    ': setBrightness()
+    +setupLights(): brightness 
+}
+
+class Scene{
+    '#setLightConfig()
+    -lightSettings: List<lightID, brightness>
+    +setupLights(): lightSettings
+}
 
 
+' Instance Example
+' ================================
+object Example_DinningTable{
+}
 
-
+object Example_CookingScene{
+}
 
 ' Relations
 ' ================================
+DimmLight -r-|> SwitchLight
+DimmLight -d-|> ConfigurableLight  
+SwitchLight "1..1" o-r-> "1..*" MultipleLightBase
+
+MultipleLightBase <|-d- Scene
+MultipleLightBase <|-d- Group
 
 
+Example_DinningTable -u-|> Group
+Example_CookingScene -u-|> Scene
 
+' This is just for better graph allignment
+Scene -[hidden]l- SwitchLight
 @enduml

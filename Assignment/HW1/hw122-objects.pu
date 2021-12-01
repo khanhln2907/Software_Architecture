@@ -6,10 +6,10 @@
 'skinparam classAttributeIconSize 0
 
 ' horizontal distance in px
-' skinparam nodesep 60 
+skinparam nodesep 80 
 
 ' vertical distance in px
-' skinparam ranksep 50
+skinparam ranksep 80
 
 ' use only straight lines (ortho/polyline)
 skinparam linetype ortho
@@ -21,20 +21,106 @@ title 1-2-2 UML Objects
 
 ' Abstract Classes
 ' ============================
+class MultipleLightBase{
+    -Name: String
+    #handle: List<SwitchLight*>
+    #configHandle: List<ConfigurableLight*>
+    +appendSwitchLight()
+    +appendConfigurableLight()
+    +setupLights()
+    +on()
+    +off()
+}
 
+class SensorBase{
+    -ID: Integer
+    -Name: String
+    #sampling()
+}
 
+class TriggerSensor_Base{
+    #isPressed()
+    #state: Bool
+}
 
+class SamplingSensor_Base{
+    #isNewSample()
+}
 
+class ControllerBase{
+    +ID: Integer
+    #sensor: Generic
+    #isTriggered()
+}
+
+class ConfigurableLight{
+    +configure()
+}
 ' Concrete Classes
 ' ============================
+class SwitchLight{
+    -state: on/off
+    -brightness: 100, const
+    #lightID: Integer
+    +switch(state: bool)
+}
+
+class DimmLight{
+    -brightness: Integer
+    +configure()
+}
+
+class Group{
+    -brightness: Integer
+    +setupLights(): brightness 
+}
+
+class Scene{
+    -lightSettings: List<lightID, brightness>
+    +setupLights(): lightSettings
+}
+
+class DayLightSensor{
+    - Lux: Float
+}
+
+class HardwareSwitch{
+    
+}
+
+class SoftwareButton{
+    
+}
 
 
+'class GroupController{}
 
+'class SceneController{}
 
+class Controller{
+    execute()
+}
 
 ' Relations
 ' ================================
+DimmLight --|> SwitchLight  
+DimmLight -u-|> ConfigurableLight  
+MultipleLightBase "1..*" o-l-> "1..1"SwitchLight
+
+MultipleLightBase <|-d- Scene
+MultipleLightBase <|-d- Group
+
+MultipleLightBase <-r- ControllerBase
+ControllerBase -r-> SensorBase
+Controller -u-|> ControllerBase
+
+SensorBase <|-- TriggerSensor_Base
+SensorBase <|-- SamplingSensor_Base
+TriggerSensor_Base <|-- HardwareSwitch
+TriggerSensor_Base <|-d- SoftwareButton
+SamplingSensor_Base <|-- DayLightSensor
 
 
-
+' This is just for better graph allignment
+Scene -[hidden]l- SwitchLight
 @enduml

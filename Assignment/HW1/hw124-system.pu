@@ -12,7 +12,7 @@ skinparam nodesep 80
 skinparam ranksep 80
 
 ' use only straight lines (ortho/polyline)
-'skinparam linetype ortho
+skinparam linetype ortho
 
 ' title
 title 1-2-4 UML Objects
@@ -21,24 +21,15 @@ title 1-2-4 UML Objects
 
 ' Abstract Classes
 ' ============================
-class SmartLightBase{
-    -state: on/off
-    #lightID: Integer
-    +switch(state: bool)
-}
-
-class AdjustableLightBase{
-    +configure()
-}
-
 class MultipleLightBase{
     -Name: String
-    #List<lightID>: List<Integer>
-    #lightsHandle: AdjustableLightBase[1..*]
+    #handle: List<SwitchLight*>
+    #configHandle: List<ConfigurableLight*>
+    +appendSwitchLight()
+    +appendConfigurableLight()
     +setupLights()
     +on()
     +off()
-    
 }
 
 class SensorBase{
@@ -63,16 +54,25 @@ class SamplingSensor_Base{
 
 class ControllerBase{
     +ID: Integer
-    #triggerSamples: Generic
+    #Sample: Generic
+    +update()
+    -checkSwitch(): Bool
     +activate()
     +deactivate()
-    #adjustLights()
+    #regulate()
+    
 }
 
-
+class ConfigurableLight{
+    +configure()
+}
 ' Concrete Classes
 ' ============================
 class SwitchLight{
+    -state: on/off
+    -brightness: 100, const
+    #lightID: Integer
+    +switch(state: bool)
 }
 
 class DimmLight{
@@ -84,15 +84,15 @@ class Group{
     '#setBrightness()
     -brightness: Integer
     ': setBrightness()
-    +setupLights() 
-    #adjustLights()
+    +setupLights(): brightness 
+    '#regulate(): brightness
 }
 
 class Scene{
     '#setLightConfig()
-    -lightSettings: Struct
-    +setupLights()
-    #adjustLights()
+    -lightSettings: List<lightID, brightness>
+    +setupLights(): lightSettings
+    '#regulate(): lightSettings
 }
 
 class DayLightSensor{
@@ -122,19 +122,31 @@ class MainController{
     +assignEvents()
 }
 
+' Instance Example
+' ================================
+object Example_DinningTable{
+}
+
+object Example_CookingScene{
+}
+
+object Example_AdaptivePlantLight{
+    #regulate()
+}
+
 ' Relations
 ' ================================
-SmartLightBase <|-down- SwitchLight
-SmartLightBase <|-down- DimmLight
-AdjustableLightBase <|-down- DimmLight
+DimmLight --|> SwitchLight  
+DimmLight -u-|> ConfigurableLight  
+MultipleLightBase "1..*" o-l-> "1..1"SwitchLight
 
 MultipleLightBase <|-d- Scene
 MultipleLightBase <|-d- Group
-ControllerBase <|-d- Scene
-ControllerBase <|-d- Group
+MultipleLightBase -u-|> ControllerBase
 
-
-MultipleLightBase "1..*" o-left-> "1..1" SmartLightBase
+MainController "1..*" o-d-> "1..1" ControllerBase
+MainController <-r-o SensorBase
+ControllerBase <--o SensorBase
 
 SensorBase <|-- TriggerSensor_Base
 SensorBase <|-- SamplingSensor_Base
@@ -143,15 +155,10 @@ TriggerSensor_Base <|-d- SoftwareButton
 SamplingSensor_Base <|-- DayLightSensor
 SamplingSensor_Base <|-- Clock
 
-
-ControllerBase "1..*" <-u-o "1..1" MainController
-
-ControllerBase <-r-o SensorBase
-MainController <-r-o SensorBase
-
+Example_DinningTable -u-|> Group
+Example_AdaptivePlantLight -u-|> Group
+Example_CookingScene -u-|> Scene
 
 ' This is just for better graph allignment
-MultipleLightBase -[hidden]r-> ControllerBase
-AdjustableLightBase -r[hidden]-> SmartLightBase
-
+Scene -[hidden]l- SwitchLight
 @enduml
