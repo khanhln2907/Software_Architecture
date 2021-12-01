@@ -6,35 +6,152 @@
 'skinparam classAttributeIconSize 0
 
 ' horizontal distance in px
-' skinparam nodesep 60 
+skinparam nodesep 80 
 
 ' vertical distance in px
-' skinparam ranksep 50
+skinparam ranksep 80
 
 ' use only straight lines (ortho/polyline)
-skinparam linetype ortho
+'skinparam linetype ortho
 
 ' title
-title 1-2-4 Smart Light System
+title 1-2-4 UML Objects
 
 
 
 ' Abstract Classes
 ' ============================
+class SmartLightBase{
+    -state: on/off
+    #lightID: Integer
+    +switch(state: bool)
+}
 
+class AdjustableLightBase{
+    +configure()
+}
 
+class MultipleLightBase{
+    -Name: String
+    #List<lightID>: List<Integer>
+    #lightsHandle: AdjustableLightBase[1..*]
+    +setupLights()
+    +on()
+    +off()
+    
+}
+
+class SensorBase{
+    -ID: Integer
+    -Name: String
+    #sampling()
+    -notify()
+    +attach(Observer)
+    +detach(Observer)
+}
+
+class TriggerSensor_Base{
+    #isPressed()
+    '#publishTrigger()
+    #state: Bool
+}
+
+class SamplingSensor_Base{
+    #isNewSample()
+    '#publishValues()
+}
+
+class ControllerBase{
+    +ID: Integer
+    #triggerSamples: Generic
+    +activate()
+    +deactivate()
+    #adjustLights()
+}
 
 
 ' Concrete Classes
 ' ============================
+class SwitchLight{
+}
 
+class DimmLight{
+    -brightness: Integer
+    +configure()
+}
 
+class Group{
+    '#setBrightness()
+    -brightness: Integer
+    ': setBrightness()
+    +setupLights() 
+    #adjustLights()
+}
 
+class Scene{
+    '#setLightConfig()
+    -lightSettings: Struct
+    +setupLights()
+    #adjustLights()
+}
 
+class DayLightSensor{
+    - Lux: Float
+}
+
+class HardwareSwitch{
+    
+}
+
+class SoftwareButton{
+    
+}
+
+class Clock{
+    -Time: Integer
+}
+
+'class GroupController{}
+
+'class SceneController{}
+
+class MainController{
+    -controllerList: ControllerBase[1..*]
+    +update()
+    +schedulingSubController()
+    +assignEvents()
+}
 
 ' Relations
 ' ================================
+SmartLightBase <|-down- SwitchLight
+SmartLightBase <|-down- DimmLight
+AdjustableLightBase <|-down- DimmLight
+
+MultipleLightBase <|-d- Scene
+MultipleLightBase <|-d- Group
+ControllerBase <|-d- Scene
+ControllerBase <|-d- Group
 
 
+MultipleLightBase "1..*" o-left-> "1..1" SmartLightBase
+
+SensorBase <|-- TriggerSensor_Base
+SensorBase <|-- SamplingSensor_Base
+TriggerSensor_Base <|-- HardwareSwitch
+TriggerSensor_Base <|-d- SoftwareButton
+SamplingSensor_Base <|-- DayLightSensor
+SamplingSensor_Base <|-- Clock
+
+
+ControllerBase "1..*" <-u-o "1..1" MainController
+
+ControllerBase <-r-o SensorBase
+MainController <-r-o SensorBase
+
+
+' This is just for better graph allignment
+MultipleLightBase -[hidden]r-> ControllerBase
+AdjustableLightBase -r[hidden]-> SmartLightBase
 
 @enduml

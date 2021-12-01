@@ -15,26 +15,54 @@
 skinparam linetype ortho
 
 ' title
-title 1-1-1 UML Attributes
-
-
+title 1-1-2 UML Attributes
 
 ' Abstract Classes
 ' ============================
+class TreeBase{
+    +name: String
+    -age: Integer
+    # location: String
+    #grow()
+}
 
+class FruitBase{
+    #ripe()
+    +fall()
+}
 
+class FlowerBase{
+    +color: String
+    #bloom()
+}
 
+class LeafBase{
+}
 
 ' Concrete Classes
 ' ============================
+class TreeBody{}
 
+class Apple{
+    -flavor: String
+}
 
-
-
+class Branch{
+    -extend(): String
+}
 
 ' Relations
 ' ================================
+' Composition
+TreeBase "1..1" *-- "1..1" TreeBody 
 
+' Aggregation
 
+TreeBody "1..1" --> "0..200" FruitBase  
+TreeBody "1..1" --> "0..100" FlowerBase  
+TreeBody "1..1" --> "50..*" LeafBase  
+TreeBody "1..1" o-- "0..20" Branch
+
+FruitBase <|-- Apple
 
 @enduml

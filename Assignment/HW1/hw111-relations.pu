@@ -17,24 +17,61 @@ skinparam linetype ortho
 ' title
 title 1-1-1 UML Relations
 
-
-
 ' Abstract Classes
 ' ============================
+class PlantBase{
+    +category: String
+    +name: String
+    #age: Integer
+    +grow()
+}
 
+class TreeBase{
+    -height: Float
+    -diameter: Float
+}
 
-
+' Trees contain entities such as flowers, fruits, leaves 
+class EntityBase{
+    +color: String
+    +size: Float
+    #changeColor()
+}
 
 ' Concrete Classes
 ' ============================
 
+class Roots{
+    -depth: Float
+    -extend()
+}
 
+class Apple{
+    -flavor: String
+    -ripe()
+}
 
-
+class Branch{
+    -length: Float
+    -extend()
+}
 
 ' Relations
 ' ================================
 
+' Inheritance
+PlantBase <|-- TreeBase
+
+' Composition
+TreeBase *-left- Roots
+
+' Association
+TreeBase -- Branch
+
+' Aggregation
+TreeBase o-right- EntityBase
+
+EntityBase <|-right- Apple  
 
 
 @enduml

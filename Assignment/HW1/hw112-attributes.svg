@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="503px" preserveAspectRatio="none" style="width:524px;height:503px;background:#FFFFFF;" version="1.1" viewBox="0 0 524 503" width="524px" zoomAndPan="magnify"><defs><filter height="300%" id="f1b2418vjg5z9l" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><text fill="#000000" font-family="sans-serif" font-size="18" lengthAdjust="spacing" textLength="196" x="157.75" y="16.708">1-1-2 UML Attributes</text><!--MD5=[bfb805d16b5065248c3cf5daaf4cd08f]
+class TreeBase--><rect codeLine="21" fill="#FEFECE" filter="url(#f1b2418vjg5z9l)" height="99.2188" id="TreeBase" style="stroke:#A80036;stroke-width:1.5;" width="110" x="197" y="27.9531"/><ellipse cx="221" cy="43.9531" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M223.3438,39.625 C222.4063,39.1875 221.8125,39.0469 220.9375,39.0469 C218.3125,39.0469 216.3125,41.125 216.3125,43.8438 L216.3125,44.9688 C216.3125,47.5469 218.4219,49.4375 221.3125,49.4375 C222.5313,49.4375 223.6875,49.1406 224.4375,48.5938 C225.0156,48.1875 225.3438,47.7344 225.3438,47.3438 C225.3438,46.8906 224.9531,46.5 224.4844,46.5 C224.2656,46.5 224.0625,46.5781 223.875,46.7656 C223.4219,47.25 223.4219,47.25 223.2344,47.3438 C222.8125,47.6094 222.125,47.7344 221.3594,47.7344 C219.3125,47.7344 218.0156,46.6406 218.0156,44.9375 L218.0156,43.8438 C218.0156,42.0625 219.2656,40.75 221,40.75 C221.5781,40.75 222.1875,40.9063 222.6563,41.1563 C223.1406,41.4375 223.3125,41.6563 223.4063,42.0625 C223.4688,42.4688 223.5,42.5938 223.6406,42.7188 C223.7813,42.8594 224.0156,42.9688 224.2344,42.9688 C224.5,42.9688 224.7656,42.8281 224.9375,42.6094 C225.0469,42.4531 225.0781,42.2656 225.0781,41.8438 L225.0781,40.4219 C225.0781,39.9844 225.0625,39.8594 224.9688,39.7031 C224.8125,39.4375 224.5313,39.2969 224.2344,39.2969 C223.9375,39.2969 223.7344,39.3906 223.5156,39.7031 L223.3438,39.625 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="58" x="237" y="48.1074">TreeBase</text><line style="stroke:#A80036;stroke-width:1.5;" x1="198" x2="306" y1="59.9531" y2="59.9531"/><ellipse cx="208" cy="70.9531" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="73" x="217" y="74.1636">name: String</text><rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="205" y="80.7578"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="70" x="217" y="86.9683">age: Integer</text><polygon fill="none" points="208,91.5625,212,95.5625,208,99.5625,204,95.5625" style="stroke:#B38D22;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="84" x="217" y="99.7729">location: String</text><line style="stroke:#A80036;stroke-width:1.5;" x1="198" x2="306" y1="106.3672" y2="106.3672"/><polygon fill="#FFFF44" points="208,112.3672,212,116.3672,208,120.3672,204,116.3672" style="stroke:#B38D22;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="35" x="217" y="120.5776">grow()</text><!--MD5=[79cbb274ecce5efadb1b5db390a09ede]
+class FruitBase--><rect codeLine="28" fill="#FEFECE" filter="url(#f1b2418vjg5z9l)" height="73.6094" id="FruitBase" style="stroke:#A80036;stroke-width:1.5;" width="88" x="12" y="294.9531"/><ellipse cx="27" cy="310.9531" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M29.3438,306.625 C28.4063,306.1875 27.8125,306.0469 26.9375,306.0469 C24.3125,306.0469 22.3125,308.125 22.3125,310.8438 L22.3125,311.9688 C22.3125,314.5469 24.4219,316.4375 27.3125,316.4375 C28.5313,316.4375 29.6875,316.1406 30.4375,315.5938 C31.0156,315.1875 31.3438,314.7344 31.3438,314.3438 C31.3438,313.8906 30.9531,313.5 30.4844,313.5 C30.2656,313.5 30.0625,313.5781 29.875,313.7656 C29.4219,314.25 29.4219,314.25 29.2344,314.3438 C28.8125,314.6094 28.125,314.7344 27.3594,314.7344 C25.3125,314.7344 24.0156,313.6406 24.0156,311.9375 L24.0156,310.8438 C24.0156,309.0625 25.2656,307.75 27,307.75 C27.5781,307.75 28.1875,307.9063 28.6563,308.1563 C29.1406,308.4375 29.3125,308.6563 29.4063,309.0625 C29.4688,309.4688 29.5,309.5938 29.6406,309.7188 C29.7813,309.8594 30.0156,309.9688 30.2344,309.9688 C30.5,309.9688 30.7656,309.8281 30.9375,309.6094 C31.0469,309.4531 31.0781,309.2656 31.0781,308.8438 L31.0781,307.4219 C31.0781,306.9844 31.0625,306.8594 30.9688,306.7031 C30.8125,306.4375 30.5313,306.2969 30.2344,306.2969 C29.9375,306.2969 29.7344,306.3906 29.5156,306.7031 L29.3438,306.625 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="56" x="41" y="315.1074">FruitBase</text><line style="stroke:#A80036;stroke-width:1.5;" x1="13" x2="99" y1="326.9531" y2="326.9531"/><line style="stroke:#A80036;stroke-width:1.5;" x1="13" x2="99" y1="334.9531" y2="334.9531"/><polygon fill="#FFFF44" points="23,340.9531,27,344.9531,23,348.9531,19,344.9531" style="stroke:#B38D22;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="30" x="32" y="349.1636">ripe()</text><ellipse cx="23" cy="358.7578" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="25" x="32" y="361.9683">fall()</text><!--MD5=[704868f7b438229659968767d411932e]
+class FlowerBase--><rect codeLine="33" fill="#FEFECE" filter="url(#f1b2418vjg5z9l)" height="73.6094" id="FlowerBase" style="stroke:#A80036;stroke-width:1.5;" width="103" x="135.5" y="294.9531"/><ellipse cx="150.5" cy="310.9531" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M152.8438,306.625 C151.9063,306.1875 151.3125,306.0469 150.4375,306.0469 C147.8125,306.0469 145.8125,308.125 145.8125,310.8438 L145.8125,311.9688 C145.8125,314.5469 147.9219,316.4375 150.8125,316.4375 C152.0313,316.4375 153.1875,316.1406 153.9375,315.5938 C154.5156,315.1875 154.8438,314.7344 154.8438,314.3438 C154.8438,313.8906 154.4531,313.5 153.9844,313.5 C153.7656,313.5 153.5625,313.5781 153.375,313.7656 C152.9219,314.25 152.9219,314.25 152.7344,314.3438 C152.3125,314.6094 151.625,314.7344 150.8594,314.7344 C148.8125,314.7344 147.5156,313.6406 147.5156,311.9375 L147.5156,310.8438 C147.5156,309.0625 148.7656,307.75 150.5,307.75 C151.0781,307.75 151.6875,307.9063 152.1563,308.1563 C152.6406,308.4375 152.8125,308.6563 152.9063,309.0625 C152.9688,309.4688 153,309.5938 153.1406,309.7188 C153.2813,309.8594 153.5156,309.9688 153.7344,309.9688 C154,309.9688 154.2656,309.8281 154.4375,309.6094 C154.5469,309.4531 154.5781,309.2656 154.5781,308.8438 L154.5781,307.4219 C154.5781,306.9844 154.5625,306.8594 154.4688,306.7031 C154.3125,306.4375 154.0313,306.2969 153.7344,306.2969 C153.4375,306.2969 153.2344,306.3906 153.0156,306.7031 L152.8438,306.625 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="71" x="164.5" y="315.1074">FlowerBase</text><line style="stroke:#A80036;stroke-width:1.5;" x1="136.5" x2="237.5" y1="326.9531" y2="326.9531"/><ellipse cx="146.5" cy="337.9531" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="67" x="155.5" y="341.1636">color: String</text><line style="stroke:#A80036;stroke-width:1.5;" x1="136.5" x2="237.5" y1="347.7578" y2="347.7578"/><polygon fill="#FFFF44" points="146.5,353.7578,150.5,357.7578,146.5,361.7578,142.5,357.7578" style="stroke:#B38D22;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="43" x="155.5" y="361.9683">bloom()</text><!--MD5=[30d4aa9478dcc8ffc0bde62ba0aac45d]
+class LeafBase--><rect codeLine="38" fill="#FEFECE" filter="url(#f1b2418vjg5z9l)" height="48" id="LeafBase" style="stroke:#A80036;stroke-width:1.5;" width="87" x="273.5" y="307.9531"/><ellipse cx="288.5" cy="323.9531" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M290.8438,319.625 C289.9063,319.1875 289.3125,319.0469 288.4375,319.0469 C285.8125,319.0469 283.8125,321.125 283.8125,323.8438 L283.8125,324.9688 C283.8125,327.5469 285.9219,329.4375 288.8125,329.4375 C290.0313,329.4375 291.1875,329.1406 291.9375,328.5938 C292.5156,328.1875 292.8438,327.7344 292.8438,327.3438 C292.8438,326.8906 292.4531,326.5 291.9844,326.5 C291.7656,326.5 291.5625,326.5781 291.375,326.7656 C290.9219,327.25 290.9219,327.25 290.7344,327.3438 C290.3125,327.6094 289.625,327.7344 288.8594,327.7344 C286.8125,327.7344 285.5156,326.6406 285.5156,324.9375 L285.5156,323.8438 C285.5156,322.0625 286.7656,320.75 288.5,320.75 C289.0781,320.75 289.6875,320.9063 290.1563,321.1563 C290.6406,321.4375 290.8125,321.6563 290.9063,322.0625 C290.9688,322.4688 291,322.5938 291.1406,322.7188 C291.2813,322.8594 291.5156,322.9688 291.7344,322.9688 C292,322.9688 292.2656,322.8281 292.4375,322.6094 C292.5469,322.4531 292.5781,322.2656 292.5781,321.8438 L292.5781,320.4219 C292.5781,319.9844 292.5625,319.8594 292.4688,319.7031 C292.3125,319.4375 292.0313,319.2969 291.7344,319.2969 C291.4375,319.2969 291.2344,319.3906 291.0156,319.7031 L290.8438,319.625 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="55" x="302.5" y="328.1074">LeafBase</text><line style="stroke:#A80036;stroke-width:1.5;" x1="274.5" x2="359.5" y1="339.9531" y2="339.9531"/><line style="stroke:#A80036;stroke-width:1.5;" x1="274.5" x2="359.5" y1="347.9531" y2="347.9531"/><!--MD5=[ce51546c4333c08b53fd2c97749e6d1f]
+class TreeBody--><rect codeLine="43" fill="#FEFECE" filter="url(#f1b2418vjg5z9l)" height="48" id="TreeBody" style="stroke:#A80036;stroke-width:1.5;" width="91" x="206.5" y="186.9531"/><ellipse cx="221.5" cy="202.9531" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M223.8438,198.625 C222.9063,198.1875 222.3125,198.0469 221.4375,198.0469 C218.8125,198.0469 216.8125,200.125 216.8125,202.8438 L216.8125,203.9688 C216.8125,206.5469 218.9219,208.4375 221.8125,208.4375 C223.0313,208.4375 224.1875,208.1406 224.9375,207.5938 C225.5156,207.1875 225.8438,206.7344 225.8438,206.3438 C225.8438,205.8906 225.4531,205.5 224.9844,205.5 C224.7656,205.5 224.5625,205.5781 224.375,205.7656 C223.9219,206.25 223.9219,206.25 223.7344,206.3438 C223.3125,206.6094 222.625,206.7344 221.8594,206.7344 C219.8125,206.7344 218.5156,205.6406 218.5156,203.9375 L218.5156,202.8438 C218.5156,201.0625 219.7656,199.75 221.5,199.75 C222.0781,199.75 222.6875,199.9063 223.1563,200.1563 C223.6406,200.4375 223.8125,200.6563 223.9063,201.0625 C223.9688,201.4688 224,201.5938 224.1406,201.7188 C224.2813,201.8594 224.5156,201.9688 224.7344,201.9688 C225,201.9688 225.2656,201.8281 225.4375,201.6094 C225.5469,201.4531 225.5781,201.2656 225.5781,200.8438 L225.5781,199.4219 C225.5781,198.9844 225.5625,198.8594 225.4688,198.7031 C225.3125,198.4375 225.0313,198.2969 224.7344,198.2969 C224.4375,198.2969 224.2344,198.3906 224.0156,198.7031 L223.8438,198.625 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="59" x="235.5" y="207.1074">TreeBody</text><line style="stroke:#A80036;stroke-width:1.5;" x1="207.5" x2="296.5" y1="218.9531" y2="218.9531"/><line style="stroke:#A80036;stroke-width:1.5;" x1="207.5" x2="296.5" y1="226.9531" y2="226.9531"/><!--MD5=[9ca6abe265fa2179f817d83b5e22eb3b]
+class Apple--><rect codeLine="45" fill="#FEFECE" filter="url(#f1b2418vjg5z9l)" height="60.8047" id="Apple" style="stroke:#A80036;stroke-width:1.5;" width="98" x="7" y="428.9531"/><ellipse cx="35.95" cy="444.9531" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M38.2938,440.625 C37.3563,440.1875 36.7625,440.0469 35.8875,440.0469 C33.2625,440.0469 31.2625,442.125 31.2625,444.8438 L31.2625,445.9688 C31.2625,448.5469 33.3719,450.4375 36.2625,450.4375 C37.4813,450.4375 38.6375,450.1406 39.3875,449.5938 C39.9656,449.1875 40.2938,448.7344 40.2938,448.3438 C40.2938,447.8906 39.9031,447.5 39.4344,447.5 C39.2156,447.5 39.0125,447.5781 38.825,447.7656 C38.3719,448.25 38.3719,448.25 38.1844,448.3438 C37.7625,448.6094 37.075,448.7344 36.3094,448.7344 C34.2625,448.7344 32.9656,447.6406 32.9656,445.9375 L32.9656,444.8438 C32.9656,443.0625 34.2156,441.75 35.95,441.75 C36.5281,441.75 37.1375,441.9063 37.6063,442.1563 C38.0906,442.4375 38.2625,442.6563 38.3563,443.0625 C38.4188,443.4688 38.45,443.5938 38.5906,443.7188 C38.7313,443.8594 38.9656,443.9688 39.1844,443.9688 C39.45,443.9688 39.7156,443.8281 39.8875,443.6094 C39.9969,443.4531 40.0281,443.2656 40.0281,442.8438 L40.0281,441.4219 C40.0281,440.9844 40.0125,440.8594 39.9188,440.7031 C39.7625,440.4375 39.4813,440.2969 39.1844,440.2969 C38.8875,440.2969 38.6844,440.3906 38.4656,440.7031 L38.2938,440.625 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="35" x="53.05" y="449.1074">Apple</text><line style="stroke:#A80036;stroke-width:1.5;" x1="8" x2="104" y1="460.9531" y2="460.9531"/><rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="15" y="468.9531"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="72" x="27" y="475.1636">flavor: String</text><line style="stroke:#A80036;stroke-width:1.5;" x1="8" x2="104" y1="481.7578" y2="481.7578"/><!--MD5=[6d7d587a021629470fd0d5f8ef3407c9]
+class Branch--><rect codeLine="49" fill="#FEFECE" filter="url(#f1b2418vjg5z9l)" height="60.8047" id="Branch" style="stroke:#A80036;stroke-width:1.5;" width="115" x="395.5" y="301.4531"/><ellipse cx="429.4" cy="317.4531" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M431.7438,313.125 C430.8063,312.6875 430.2125,312.5469 429.3375,312.5469 C426.7125,312.5469 424.7125,314.625 424.7125,317.3438 L424.7125,318.4688 C424.7125,321.0469 426.8219,322.9375 429.7125,322.9375 C430.9313,322.9375 432.0875,322.6406 432.8375,322.0938 C433.4156,321.6875 433.7438,321.2344 433.7438,320.8438 C433.7438,320.3906 433.3531,320 432.8844,320 C432.6656,320 432.4625,320.0781 432.275,320.2656 C431.8219,320.75 431.8219,320.75 431.6344,320.8438 C431.2125,321.1094 430.525,321.2344 429.7594,321.2344 C427.7125,321.2344 426.4156,320.1406 426.4156,318.4375 L426.4156,317.3438 C426.4156,315.5625 427.6656,314.25 429.4,314.25 C429.9781,314.25 430.5875,314.4063 431.0563,314.6563 C431.5406,314.9375 431.7125,315.1563 431.8063,315.5625 C431.8688,315.9688 431.9,316.0938 432.0406,316.2188 C432.1813,316.3594 432.4156,316.4688 432.6344,316.4688 C432.9,316.4688 433.1656,316.3281 433.3375,316.1094 C433.4469,315.9531 433.4781,315.7656 433.4781,315.3438 L433.4781,313.9219 C433.4781,313.4844 433.4625,313.3594 433.3688,313.2031 C433.2125,312.9375 432.9313,312.7969 432.6344,312.7969 C432.3375,312.7969 432.1344,312.8906 431.9156,313.2031 L431.7438,313.125 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="41" x="447.6" y="321.6074">Branch</text><line style="stroke:#A80036;stroke-width:1.5;" x1="396.5" x2="509.5" y1="333.4531" y2="333.4531"/><line style="stroke:#A80036;stroke-width:1.5;" x1="396.5" x2="509.5" y1="341.4531" y2="341.4531"/><rect fill="#F24D5C" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="403.5" y="349.4531"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="89" x="415.5" y="355.6636">extend(): String</text><!--MD5=[13b4847ce3ef315faaec7a2a30880a61]
+reverse link TreeBase to TreeBody--><path codeLine="56" d="M252,140.1631 C252,140.1631 252,186.6371 252,186.6371 " fill="none" id="TreeBase-backto-TreeBody" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="252,127.1631,248,133.1631,252,139.1631,256,133.1631,252,127.1631" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="24" x="226.3125" y="147.2691">1..1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="24" x="225.075" y="175.9651">1..1</text><!--MD5=[b5483db206da91995feed57d8d3a08ad]
+link TreeBody to FruitBase--><path codeLine="60" d="M206.047,210.9531 C148.115,210.9531 56,210.9531 56,210.9531 C56,210.9531 56,289.6621 56,289.6621 " fill="none" id="TreeBody-to-FruitBase" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="56,294.6621,60,285.6621,56,289.6621,52,285.6621,56,294.6621" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="24" x="174.6218" y="207.0676">1..1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="40" x="12.4375" y="283.7972">0..200</text><!--MD5=[d33ecd6f68690cf52a31258e629cdf9d]
+link TreeBody to FlowerBase--><path codeLine="61" d="M222.5,235.1481 C222.5,235.1481 222.5,289.9251 222.5,289.9251 " fill="none" id="TreeBody-to-FlowerBase" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="222.5,294.9251,226.5,285.9251,222.5,289.9251,218.5,285.9251,222.5,294.9251" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="24" x="188.3844" y="254.9569">1..1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="40" x="185.3578" y="283.8304">0..100</text><!--MD5=[54255c440e7987aaf7fcc565ca401d12]
+link TreeBody to LeafBase--><path codeLine="62" d="M285.5,235.1481 C285.5,235.1481 285.5,302.8001 285.5,302.8001 " fill="none" id="TreeBody-to-LeafBase" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="285.5,307.8001,289.5,298.8001,285.5,302.8001,281.5,298.8001,285.5,307.8001" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="24" x="266.7406" y="254.9569">1..1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="31" x="242.4563" y="296.773">50..*</text><!--MD5=[02d980077e7f0ba0d9d73ab35e913257]
+reverse link TreeBody to Branch--><path codeLine="63" d="M310.61,210.9531 C310.61,210.9531 453,210.9531 453,210.9531 C453,210.9531 453,265.5741 453,301.4201 " fill="none" id="TreeBody-backto-Branch" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#FFFFFF" points="297.61,210.9531,303.61,214.9531,309.61,210.9531,303.61,206.9531,297.61,210.9531" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="24" x="305.3513" y="207.0211">1..1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="32" x="417.5" y="290.2032">0..20</text><!--MD5=[49b46e4a9f0d371353ee696b00c9d6da]
+reverse link FruitBase to Apple--><path codeLine="65" d="M56,389.1741 C56,389.1741 56,428.844 56,428.844 " fill="none" id="FruitBase-backto-Apple" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="none" points="49.0001,389.1741,56,369.1741,63.0001,389.1741,49.0001,389.1741" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[343b5bba1d139723ad5286a229f813b6]
+@startuml
+' Settings
+' ============================
+
+' use +,#,- instead of icons
+'skinparam classAttributeIconSize 0
+
+' horizontal distance in px
+'skinparam nodesep 60 
+
+' vertical distance in px
+'skinparam ranksep 50
+
+' use only straight lines (ortho/polyline)
+skinparam linetype ortho
+
+' title
+title 1-1-2 UML Attributes
+
+' Abstract Classes
+' ============================
+class TreeBase{
+    +name: String
+    -age: Integer
+    # location: String
+    #grow()
+}
+
+class FruitBase{
+    #ripe()
+    +fall()
+}
+
+class FlowerBase{
+    +color: String
+    #bloom()
+}
+
+class LeafBase{
+}
+
+' Concrete Classes
+' ============================
+class TreeBody{}
+
+class Apple{
+    -flavor: String
+}
+
+class Branch{
+    -extend(): String
+}
+
+' Relations
+' ================================
+' Composition
+TreeBase "1..1" *- - "1..1" TreeBody 
+
+' Aggregation
+
+TreeBody "1..1" - -> "0..200" FruitBase  
+TreeBody "1..1" - -> "0..100" FlowerBase  
+TreeBody "1..1" - -> "50..*" LeafBase  
+TreeBody "1..1" o- - "0..20" Branch
+
+FruitBase <|- - Apple
+@enduml
+
+@startuml
+
+
+
+
+skinparam linetype ortho
+
+title 1-1-2 UML Attributes
+
+class TreeBase{
+    +name: String
+    -age: Integer
+    # location: String
+    #grow()
+}
+
+class FruitBase{
+    #ripe()
+    +fall()
+}
+
+class FlowerBase{
+    +color: String
+    #bloom()
+}
+
+class LeafBase{
+}
+
+class TreeBody{}
+
+class Apple{
+    -flavor: String
+}
+
+class Branch{
+    -extend(): String
+}
+
+TreeBase "1..1" *- - "1..1" TreeBody 
+
+
+TreeBody "1..1" - -> "0..200" FruitBase  
+TreeBody "1..1" - -> "0..100" FlowerBase  
+TreeBody "1..1" - -> "50..*" LeafBase  
+TreeBody "1..1" o- - "0..20" Branch
+
+FruitBase <|- - Apple
+@enduml
+
+PlantUML version 1.2021.15(Tue Nov 30 16:45:34 UTC 2021)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>
