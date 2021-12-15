@@ -12,7 +12,7 @@
 ' skinparam ranksep 50
 
 ' use only straight lines (ortho/polyline)
-skinparam linetype ortho
+'skinparam linetype ortho
 
 ' title
 title 1-1-1 UML Relations

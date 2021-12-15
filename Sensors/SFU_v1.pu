@@ -1,0 +1,209 @@
+@startuml
+' Settings
+' ============================
+
+' use +,#,- instead of icons
+'skinparam classAttributeIconSize 1
+
+' horizontal distance in px
+skinparam nodesep 80 
+
+' vertical distance in px
+skinparam ranksep 80
+
+' use only straight lines (ortho/polyline)
+'skinparam linetype ortho
+
+' title
+title Software Architecture of Sensor Subsystem
+
+' API
+class QActive{
+
+}
+
+' Abstract classes
+class SensorBase{
+    -sampleTimer: QTimeEvt
+    -referenceTime: Timestamp_t
+    # PacketReceivedMsg: static const QEvt
+    +start()
+    #loop()
+    #postSample()
+    #printSensorID()
+    #get_SensorID() = 0
+    #size_t get_SampleRate() = 0
+    #Q_STATE_DECL(initial)
+    #Q_STATE_DECL(sampling)
+}
+
+class SerialSensorBase{
+   	#virtual Q_STATE_DECL(connected);
+	#virtual Q_STATE_DECL(disconnected);
+	#QP::QState on_initial();
+    #virtual byte const * const getHeaderBytes() = 0;
+	#virtual size_t const getHeaderBytesCount() = 0;
+    #virtual const SensorIDs get_SensorID() = 0
+    #virtual void loop();
+}
+
+class SPISensorBase{
+    
+}
+
+class IMUBase{
+    
+}
+
+class MagnetometerBase{
+    
+}
+
+
+class LidarBase{
+    
+}
+
+class OpticalFlowBase{
+    
+}
+
+' Support classes
+class TopicStateStore{
+
+}
+
+class TopicIDs{
+
+}
+
+' Sensor Modules
+class PMW3901{
+    
+}
+
+class VN200{
+    
+}
+
+class ADIS16465{
+    
+}
+
+class BMM150{
+    
+}
+
+class TFMini{
+    
+}
+
+class LW20{
+
+}
+
+class LW20_StreamHandle{
+    
+}
+
+class LW20_StreamChannel{
+    
+}
+
+class ThroneOFS{
+    
+}
+
+class SBUSReceiver{
+
+}
+
+' Signal Processing layer
+class AGLFusionLayer{
+    
+}
+
+class GyroFilterLayer{
+    
+}
+
+class CascadeFilter {
+
+}
+
+class BiquadDF2 {
+    
+}
+
+' Relationship
+QActive <|-- SensorBase
+QActive <|-- AGLFusionLayer
+QActive <|-- GyroFilterLayer
+
+SensorBase <|-d- SerialSensorBase
+SensorBase <|-d- SPISensorBase
+
+SerialSensorBase <|-d- IMUBase
+SerialSensorBase <|-d- LidarBase
+SerialSensorBase <|-d- SBUSReceiver
+SPISensorBase <|-d- MagnetometerBase
+
+' Support modules
+' Filter layer
+SensorBase *-r-> TopicStateStore
+AGLFusionLayer *--> TopicStateStore
+GyroFilterLayer *--> TopicStateStore
+TopicStateStore -d-> TopicIDs
+
+CascadeFilter "1..1" *--> "1..*" BiquadDF2
+AGLFusionLayer "1..1" *--> "1..1" CascadeFilter
+GyroFilterLayer "1..1" *--> "3..3" CascadeFilter
+
+' Magnetometer
+MagnetometerBase <|-d- BMM150 
+
+
+' IMU
+
+IMUBase <|-d- VN200
+IMUBase <|-d- ADIS16465
+
+' Lidar
+LidarBase <|-d- TFMini
+LidarBase <|-d- LW20
+LW20 *-d-> LW20_StreamHandle
+LW20_StreamHandle "5..5" <-d-* "1..*" LW20_StreamChannel 
+
+
+' OFS
+OpticalFlowBase <|-d- ThroneOFS
+OpticalFlowBase <|-d- PMW3901
+
+SerialSensorBase <|-d- ThroneOFS
+SPISensorBase <|-d- PMW3901
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@enduml
