@@ -43,11 +43,13 @@ class DimmLight():
         raise NotImplementedError 
 
     # you may add own functions here
+    def __init__(self) -> None:
+        self.brightness = 0
+        self.state = False
 
 
 
-
-class DimmAdapter():
+class DimmAdapter(DimmLight):
     def __init__(self, name):
         self.name = name
 
@@ -62,29 +64,52 @@ class DimmAdapter():
 
     # get the temperature in Kelvin [DO NOT CHANGE]
     def temperature(self):
-        return Kelvin(g_esi[self.name+'temp'])    
+        return Kelvin(g_esi[self.name+'temp'])  
+
+    # some common functions for child classes
+    def printTemperatureWarning(self):
+        print("%s is too hot. Abort switching on!" %(self.name))
 
 
+class LEDLight(DimmAdapter):
+    def __init__(self, name):
+        self.name = name
+        self.duty_cycle = 0
 
-class LEDLight:
+    # todo: your code here
+    def switchState(self, isOn: bool):
+        if(isOn):
+            if(self.temperature() <= CFG_LED_TEMPERATURE_MAX):
+                self.setVoltage(5)
+            else:
+                self.printTemperatureWarning()
+        else:
+            self.setVoltage(0)
+
+    def setBrightness(self, lvl: Percent):
+        print("{} set duty_cycle={}%".format(self.name, lvl))
+        self.setPWM(lvl)
+
+class BulbLight(DimmAdapter):
     def __init__(self, name):
         self.name = name
 
     # todo: your code here
+    def switchState(self, isOn: bool):
+        if(isOn):
+            if(self.temperature() <= CFG_BULB_TEMPERATURE_MAX):
+                # Set the registered voltage for Bulb
+                self.setVoltage(g_esi['bulbvolt'])
+            else:
+                self.printTemperatureWarning()
+        else:
+            self.setVoltage(0)
 
-
-class BulbLight:
-    def __init__(self, name):
-        self.name = name
-
-    # todo: your code here
-
-
-
-
-
-
-
+    def setBrightness(self, lvl: Percent):
+        voltage = Volt(230.0) * lvl // 100
+        #print("{} adjusts brightness. Set V={}".format(self.name, voltage))
+        self.setVoltage(voltage)
+        
 
 # how we might test your code (examples)
 # you can uncomment these for testing your solution but make sure 
@@ -92,9 +117,9 @@ class BulbLight:
 # ----------------------------------------------------------
 ledlight = LEDLight('led')
 ledlight.switchState(True)
-ledlight.setBrightness(50)
+ledlight.setBrightness(80)
 
 bulblight = BulbLight('bulb')
 bulblight.switchState(True)
-bulblight.setBrightness(50)
+bulblight.setBrightness(80)
 
