@@ -32,18 +32,30 @@ g_esi={
 ## =======================
 class DimmLight():
     def __init__(self, adapter, light):
-        pass
+        self.adapter = adapter
+        self.light = light
 
     # do not change function signature
     def switchState(self, isOn: bool):
-        '''todo: overwrite or implement'''
-        raise NotImplementedError 
+        temp = self.adapter.temperature()
+        isValid = self.light.isValidTemperature(temp)
+        if(isOn):
+            if(isValid):
+                savedVoltage = self.light.getOperatingVoltage()
+                self.adapter.setVoltage(savedVoltage) 
+            else:
+                print("%s overheat. Abort switching on" %(self.DimmAdapter.name))
+        else:
+            self.adapter.setVoltage(0)
 
     # do not change function signature
     def setBrightness(self, lvl: Percent):
-        '''todo: overwrite or implement'''
-        raise NotImplementedError 
-
+        if(self.adapter.name == 'led'):
+            self.adapter.setPWM(lvl)
+        elif(self.adapter.name == 'bulb'):
+            self.adapter.setVoltage(lvl * CFG_VOLTAGE_MAX // 100)
+        else:
+            assert False, "Light Types undeclared!"
     # you may add own functions here
 
 
@@ -64,18 +76,33 @@ class DimmAdapter():
     def temperature(self):
         return Kelvin(g_esi[self.name+'temp'])    
 
+    
+
+# This abstract classes declare the interfaces to ensure the
+# adaptees have the common function
+class SmartLight:
+    def isValidTemperature(self, temp : Kelvin):
+        raise NotImplementedError
+
+    def getOperatingVoltage(self):
+        raise NotImplementedError
 
 
+CFG_LED_VOLTAGE = Volt(5)
 
-class LEDLight:
-    pass # remove
-    # todo: your code here
+class LEDLight(SmartLight):
+    def isValidTemperature(self, temp : Kelvin):
+        return temp <= CFG_LED_TEMPERATURE_MAX
+        
+    def getOperatingVoltage(self):
+        return CFG_LED_VOLTAGE
 
+class BulbLight(SmartLight):
+    def isValidTemperature(self, temp : Kelvin):
+        return temp <= CFG_BULB_TEMPERATURE_MAX
 
-class BulbLight:
-    pass # remove
-    # todo: your code here
-
+    def getOperatingVoltage(self):
+        return CFG_VOLTAGE_MAX
 
 
 

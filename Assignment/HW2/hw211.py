@@ -70,6 +70,8 @@ class DimmAdapter(DimmLight):
     def printTemperatureWarning(self):
         print("%s is too hot. Abort switching on!" %(self.name))
 
+# Additional constants
+CFG_LED_VOLTAGE = Volt(5)
 
 class LEDLight(DimmAdapter):
     def __init__(self, name):
@@ -80,7 +82,7 @@ class LEDLight(DimmAdapter):
     def switchState(self, isOn: bool):
         if(isOn):
             if(self.temperature() <= CFG_LED_TEMPERATURE_MAX):
-                self.setVoltage(5)
+                self.setVoltage(CFG_LED_VOLTAGE)
             else:
                 self.printTemperatureWarning()
         else:
@@ -99,7 +101,7 @@ class BulbLight(DimmAdapter):
         if(isOn):
             if(self.temperature() <= CFG_BULB_TEMPERATURE_MAX):
                 # Set the registered voltage for Bulb
-                self.setVoltage(g_esi['bulbvolt'])
+                self.setVoltage(CFG_VOLTAGE_MAX)
             else:
                 self.printTemperatureWarning()
         else:
@@ -119,7 +121,15 @@ ledlight = LEDLight('led')
 ledlight.switchState(True)
 ledlight.setBrightness(80)
 
+
 bulblight = BulbLight('bulb')
 bulblight.switchState(True)
 bulblight.setBrightness(80)
+
+# ledlight.switchState(False)
+# bulblight.switchState(False)
+# bulblight.switchState(True)
+
+
+
 
