@@ -1,0 +1,46 @@
+@startuml
+' horizontal distance in px
+'skinparam nodesep 50 
+
+' vertical distance in px
+'skinparam ranksep 80
+'skinparam linetype ortho
+
+skinparam FontSize 20
+
+skinparam State {
+  AttributeFontSize  20
+  FontSize 50
+}
+
+<style>
+  arrow {
+    FontSize 50
+    LineColor Black
+  }
+</style>
+
+
+title State Machine of Sensor Active Object
+
+
+
+state Initial {
+}
+
+state Sampling {
+    state Connected {
+    }
+    
+    state Disconnected {
+    }
+}
+
+[*] -down-> Initial
+Initial -d-> Disconnected
+Connected --> Disconnected : HB_TIMEOUT_SIG
+Disconnected --> Connected : PACKET_RECEIVED_SIG
+Sampling --> Sampling: READ_DATA_SIG, SYNC_CONFIRM_SIG
+
+
+@enduml

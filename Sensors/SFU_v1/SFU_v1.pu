@@ -6,7 +6,7 @@
 'skinparam classAttributeIconSize 1
 
 ' horizontal distance in px
-skinparam nodesep 80 
+skinparam nodesep 20 
 
 ' vertical distance in px
 skinparam ranksep 80
@@ -129,6 +129,7 @@ class CascadeFilter {
 
 
 ' Relationship
+QHsm <|-- QActive
 QActive <|-- SensorBase
 QActive <|-- AGLFusionLayer
 QActive <|-- GyroFilterLayer
@@ -149,9 +150,9 @@ AGLFusionLayer -u-|> TopicStateStore
 GyroFilterLayer -u-|> TopicStateStore
 'TopicStateStore -d-> TopicIDs
 
-CascadeFilter "1..1" *--> "1..*" BiquadDF2
-AGLFusionLayer "1..1" *--> "1..1" CascadeFilter
-GyroFilterLayer "1..1" *--> "3..3" CascadeFilter
+'CascadeFilter "1..1" *--> "1..*" BiquadDF2
+AGLFusionLayer "1" *--> "1" CascadeFilter
+GyroFilterLayer "1" *--> "3" CascadeFilter
 
 ' Magnetometer
 MagnetometerBase <|-d- BMM150 
