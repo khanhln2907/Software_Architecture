@@ -64,6 +64,10 @@ class LidarBase{
     
 }
 
+class OpticalFlowBase{
+    
+}
+
 ' Support classes
 class TopicStateStore{
 
@@ -106,7 +110,7 @@ class LW20{
     
 ' }
 
-class OFSThroneFlow{
+class ThroneOFS{
     
 }
 
@@ -127,6 +131,9 @@ class CascadeFilter {
 
 }
 
+class BiquadDF2 {
+    
+}
 
 ' Relationship
 QActive <|-- SensorBase
@@ -140,7 +147,6 @@ SerialSensorBase <|-d- IMUBase
 SerialSensorBase <|-d- LidarBase
 SerialSensorBase <|-d- SBUSReceiver
 SPISensorBase <|-d- MagnetometerBase
-SPISensorBase -r[hidden]-> SerialSensorBase
 
 ' Support modules
 ' Filter layer
@@ -160,6 +166,7 @@ MagnetometerBase <|-d- BMM150
 ' IMU
 
 IMUBase <|-d- VN200
+IMUBase <|-d- ADIS16465
 
 ' Lidar
 LidarBase <|-d- TFMini
@@ -169,13 +176,11 @@ LidarBase <|-d- LW20
 
 
 ' OFS
-' OpticalFlowBase <|-d- OFSThroneFlow
-' OpticalFlowBase <|-d- PMW3901
+OpticalFlowBase <|-d- ThroneOFS
+OpticalFlowBase <|-d- PMW3901
 
-SerialSensorBase <|-d- OFSThroneFlow
+SerialSensorBase <|-d- ThroneOFS
 SPISensorBase <|-d- PMW3901
-SPINonBlockBase <|-d- PMW3901
-SPISensorBase <|-d- ADIS16465
 
 
 
