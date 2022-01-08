@@ -14,6 +14,9 @@ CFG_BULB_TEMPERATURE_MAX = Kelvin(500)
 CFG_VOLTAGE_MAX = Volt(230)
 CFG_DUTY_MAX = Percent(100)
 
+# Additional constants added by student
+CFG_LED_VOLTAGE = Volt(5) 
+
 
 ## Globals [DO NOT CHANGE]
 ## =======================
@@ -34,8 +37,14 @@ class DimmLight():
 
     # do not change function signature
     def switchState(self, isOn: bool):
-        '''todo: overwrite or implement'''
-        raise NotImplementedError 
+        self.state = isOn   # This variable ensures that the lights are not turned on by adjusting the brightness
+        if(isOn):
+            if(self.isValidTemperature()):
+                self.on()
+            else:
+                print("%s is too hot. Abort switching on!" %(self.name))
+        else:
+            self.off()
 
     # do not change function signature
     def setBrightness(self, lvl: Percent):
@@ -43,10 +52,20 @@ class DimmLight():
         raise NotImplementedError 
 
     # you may add own functions here
-    def __init__(self) -> None:
-        self.brightness = 0
+    def __init__(self, name):
+        self.name = name
         self.state = False
 
+    # Any child class must define these functions to perform the behaviours of DimmLight
+    # The adapter class should define only the hardware related methods
+    def isValidTemperature(self):
+        raise NotImplementedError
+
+    def on(self):
+        raise NotImplementedError
+
+    def off(self):
+        raise NotImplementedError
 
 
 class DimmAdapter(DimmLight):
@@ -66,30 +85,23 @@ class DimmAdapter(DimmLight):
     def temperature(self):
         return Kelvin(g_esi[self.name+'temp'])  
 
-    # some common functions for child classes
-    def printTemperatureWarning(self):
-        print("%s is too hot. Abort switching on!" %(self.name))
-
-# Additional constants
-CFG_LED_VOLTAGE = Volt(5)
 
 class LEDLight(DimmAdapter):
     def __init__(self, name):
         self.name = name
-        self.duty_cycle = 0
 
     # todo: your code here
-    def switchState(self, isOn: bool):
-        if(isOn):
-            if(self.temperature() <= CFG_LED_TEMPERATURE_MAX):
-                self.setVoltage(CFG_LED_VOLTAGE)
-            else:
-                self.printTemperatureWarning()
-        else:
-            self.setVoltage(0)
+    def isValidTemperature(self):
+        return self.temperature() <= CFG_LED_TEMPERATURE_MAX
+
+    def on(self):
+        self.setVoltage(CFG_LED_VOLTAGE)
+    
+    def off(self):
+        return self.setVoltage(0)
 
     def setBrightness(self, lvl: Percent):
-        print("{} set duty_cycle={}%".format(self.name, lvl))
+        print("{} sets duty_cycle={}%".format(self.name, lvl))
         self.setPWM(lvl)
 
 class BulbLight(DimmAdapter):
@@ -97,27 +109,36 @@ class BulbLight(DimmAdapter):
         self.name = name
 
     # todo: your code here
-    def switchState(self, isOn: bool):
-        if(isOn):
-            if(self.temperature() <= CFG_BULB_TEMPERATURE_MAX):
-                # Set the registered voltage for Bulb
-                self.setVoltage(CFG_VOLTAGE_MAX)
-            else:
-                self.printTemperatureWarning()
-        else:
-            self.setVoltage(0)
+    def isValidTemperature(self):
+        return self.temperature() <= CFG_BULB_TEMPERATURE_MAX
+
+    def on(self):
+        self.setVoltage(CFG_VOLTAGE_MAX)
+
+    def off(self):
+        return self.setVoltage(0)
 
     def setBrightness(self, lvl: Percent):
-        voltage = Volt(230.0) * lvl // 100
-        #print("{} adjusts brightness. Set V={}".format(self.name, voltage))
-        self.setVoltage(voltage)
+        # Only change the brightness if the light was switched on
+        if(self.state == True):
+            print("{} adjusts brightness.".format(self.name))
+            self.setVoltage(Volt(230.0) * lvl // 100)
+        else:
+            print("{} is switched off. Ignore adjusting brightness.".format(self.name))
         
 
 # how we might test your code (examples)
 # you can uncomment these for testing your solution but make sure 
 # the following lines are commented before submitting.
 # ----------------------------------------------------------
+
+g_esi['ledtemp'] = Kelvin(500)
+
+print("Before Testing")
+print(g_esi)
+
 ledlight = LEDLight('led')
+ledlight.switchState(False)
 ledlight.switchState(True)
 ledlight.setBrightness(80)
 
@@ -125,11 +146,10 @@ ledlight.setBrightness(80)
 bulblight = BulbLight('bulb')
 bulblight.switchState(True)
 bulblight.setBrightness(80)
+bulblight.switchState(False)
+bulblight.setBrightness(25)
+bulblight.switchState(True)
+bulblight.setBrightness(20)
 
-# ledlight.switchState(False)
-# bulblight.switchState(False)
-# bulblight.switchState(True)
-
-
-
-
+print("After Testing")
+print(g_esi)
