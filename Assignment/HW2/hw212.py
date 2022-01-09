@@ -14,6 +14,8 @@ CFG_BULB_TEMPERATURE_MAX = Kelvin(500)
 CFG_VOLTAGE_MAX = Volt(230)
 CFG_DUTY_MAX = Percent(100)
 
+# Additional constants added by student
+CFG_LED_VOLTAGE = Volt(5)
 
 ## Globals [DO NOT CHANGE]
 ## =======================
@@ -34,28 +36,21 @@ class DimmLight():
     def __init__(self, adapter, light):
         self.adapter = adapter
         self.light = light
+        self.state = False
 
-    # do not change function signature
     def switchState(self, isOn: bool):
-        temp = self.adapter.temperature()
-        isValid = self.light.isValidTemperature(temp)
-        if(isOn):
-            if(isValid):
-                savedVoltage = self.light.getOperatingVoltage()
-                self.adapter.setVoltage(savedVoltage) 
-            else:
-                print("%s overheat. Abort switching on" %(self.DimmAdapter.name))
-        else:
-            self.adapter.setVoltage(0)
+        self.state = isOn   # save the state        
+        return self.light.switchState(isOn, self.adapter)
+        
 
     # do not change function signature
     def setBrightness(self, lvl: Percent):
-        if(self.adapter.name == 'led'):
-            self.adapter.setPWM(lvl)
-        elif(self.adapter.name == 'bulb'):
-            self.adapter.setVoltage(lvl * CFG_VOLTAGE_MAX // 100)
+        if(self.state):
+            self.light.setBrightness(lvl, self.adapter)    
         else:
-            assert False, "Light Types undeclared!"
+            # Only adjust the brightness when the light was turned on. Else the bulb will light up in "off" state
+            print("%s light was turned off. Ignore adjusting brightness" % (self.adapter.name)) 
+
     # you may add own functions here
 
 
@@ -81,30 +76,46 @@ class DimmAdapter():
 # This abstract classes declare the interfaces to ensure the
 # adaptees have the common function
 class SmartLight:
-    def isValidTemperature(self, temp : Kelvin):
+    def switchState(self):
         raise NotImplementedError
 
-    def getOperatingVoltage(self):
+    def setBrightness(self, isOn: bool, adapter):
         raise NotImplementedError
 
+    def printOverheatWarning(self, adapter):
+        print("%s light overheat! Abort switching on ..." % (adapter.name))
 
-CFG_LED_VOLTAGE = Volt(5)
 
 class LEDLight(SmartLight):
-    def isValidTemperature(self, temp : Kelvin):
-        return temp <= CFG_LED_TEMPERATURE_MAX
+    def setBrightness(self, lvl, adapter):
+        adapter.setPWM(lvl)
+
+    def switchState(self, isOn: bool, adapter):
+        if(isOn):
+            if(adapter.temperature() <= CFG_LED_TEMPERATURE_MAX):
+                adapter.setVoltage(CFG_LED_VOLTAGE)
+            else: 
+                self.printOverheatWarning(adapter)
+                return -1
+        else:
+            adapter.setVoltage(0.0)
+
         
-    def getOperatingVoltage(self):
-        return CFG_LED_VOLTAGE
+
+
 
 class BulbLight(SmartLight):
-    def isValidTemperature(self, temp : Kelvin):
-        return temp <= CFG_BULB_TEMPERATURE_MAX
+    def setBrightness(self, lvl, adapter):
+        adapter.setVoltage(lvl * CFG_VOLTAGE_MAX // 100)
 
-    def getOperatingVoltage(self):
-        return CFG_VOLTAGE_MAX
-
-
+    def switchState(self, isOn: bool, adapter):
+        if(isOn):
+            if(adapter.temperature() <= CFG_BULB_TEMPERATURE_MAX):
+                adapter.setVoltage(CFG_VOLTAGE_MAX)
+            else: 
+                self.printOverheatWarning(adapter)
+        else:
+            adapter.setVoltage(0.0)
 
 
 # how we might test your code (examples)
@@ -112,10 +123,24 @@ class BulbLight(SmartLight):
 # the following lines are commented before submitting.
 # ----------------------------------------------------------
 ledlight  = DimmLight(DimmAdapter('led'), LEDLight())
-ledlight.switchState(True)
-ledlight.setBrightness(50)
-
 bulblight = DimmLight(DimmAdapter('bulb'), BulbLight())
-bulblight.switchState(True)
-bulblight.setBrightness(50)
 
+g_esi['ledtemp'] = Kelvin(500)
+
+print("Before Testing")
+print(g_esi)
+
+ledlight.switchState(False)
+ledlight.switchState(True)
+ledlight.setBrightness(80)
+
+
+bulblight.switchState(True)
+bulblight.setBrightness(80)
+bulblight.switchState(False)
+bulblight.setBrightness(25)
+bulblight.switchState(True)
+bulblight.setBrightness(20)
+
+print("After Testing")
+print(g_esi)

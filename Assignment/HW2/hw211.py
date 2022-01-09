@@ -34,17 +34,10 @@ g_esi={
 ## Classes
 ## =======================
 class DimmLight():
-
     # do not change function signature
     def switchState(self, isOn: bool):
-        self.state = isOn   # This variable ensures that the lights are not turned on by adjusting the brightness
-        if(isOn):
-            if(self.isValidTemperature()):
-                self.on()
-            else:
-                print("%s is too hot. Abort switching on!" %(self.name))
-        else:
-            self.off()
+        '''todo: overwrite or implement'''
+        raise NotImplementedError 
 
     # do not change function signature
     def setBrightness(self, lvl: Percent):
@@ -52,8 +45,7 @@ class DimmLight():
         raise NotImplementedError 
 
     # you may add own functions here
-    def __init__(self, name):
-        self.name = name
+    def __init__(self):
         self.state = False
 
     # Any child class must define these functions to perform the behaviours of DimmLight
@@ -84,6 +76,16 @@ class DimmAdapter(DimmLight):
     # get the temperature in Kelvin [DO NOT CHANGE]
     def temperature(self):
         return Kelvin(g_esi[self.name+'temp'])  
+
+    def switchState(self, isOn: bool):
+        self.state = isOn   # This variable ensures that the lights are not turned on by adjusting the brightness
+        if(isOn):
+            if(self.isValidTemperature()):
+                self.on()
+            else:
+                print("%s is too hot. Abort switching on!" %(self.name))
+        else:
+            self.off()
 
 
 class LEDLight(DimmAdapter):
@@ -124,7 +126,7 @@ class BulbLight(DimmAdapter):
             print("{} adjusts brightness.".format(self.name))
             self.setVoltage(Volt(230.0) * lvl // 100)
         else:
-            print("{} is switched off. Ignore adjusting brightness.".format(self.name))
+            print("{} light was turned off. Ignore adjusting brightness.".format(self.name))
         
 
 # how we might test your code (examples)
