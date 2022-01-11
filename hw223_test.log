@@ -1,33 +1,47 @@
-2022-01-10 13:03:21,059 - INFO - Observable: Attached an observer.
-2022-01-10 13:03:21,059 - INFO - Observable: Attached an observer.
-2022-01-10 13:03:21,059 - INFO - Story 1
-2022-01-10 13:03:21,059 - INFO - SmartHome: Garage opened!
-2022-01-10 13:03:21,059 - INFO - -1 --> 0 --> 1
-2022-01-10 13:03:21,059 - INFO - Observable: Notifying observers...
-2022-01-10 13:03:21,059 - INFO - SmartHome: Light turned On!
-2022-01-10 13:03:21,059 - INFO - 0 --> 1 --> 3
-2022-01-10 13:03:21,059 - INFO - Observable: Notifying observers...
-2022-01-10 13:03:21,059 - INFO - Notification: Hey Alice! Bob forgot to close the garage
-2022-01-10 13:03:21,059 - INFO - Notification: Hey Bob! You'll still have to close the garage.
-2022-01-10 13:03:21,059 - INFO - SmartHome: Garage closed!
-2022-01-10 13:03:21,059 - INFO - 1 --> 3 --> 2
-2022-01-10 13:03:21,060 - INFO - Observable: Notifying observers...
-2022-01-10 13:03:21,060 - INFO - Story 2
-2022-01-10 13:03:21,060 - INFO - SmartHome: Garage opened!
-2022-01-10 13:03:21,060 - INFO - 3 --> 2 --> 3
-2022-01-10 13:03:21,060 - INFO - Observable: Notifying observers...
-2022-01-10 13:03:21,060 - INFO - SmartHome: Garage closed!
-2022-01-10 13:03:21,060 - INFO - 2 --> 3 --> 2
-2022-01-10 13:03:21,060 - INFO - Observable: Notifying observers...
-2022-01-10 13:03:21,060 - INFO - Notification: Hey Alice! You'll still have to turn off the light.
-2022-01-10 13:03:21,060 - INFO - Notification: Hey Bob! Alice forgot to turn off the light.
-2022-01-10 13:03:21,060 - INFO - Story 3
-2022-01-10 13:03:21,060 - INFO - SmartHome: Light turned Off!
-2022-01-10 13:03:21,060 - INFO - 2 --> 2 --> 0
-2022-01-10 13:03:21,060 - INFO - Observable: Notifying observers...
-2022-01-10 13:03:21,060 - INFO - SmartHome: Garage opened!
-2022-01-10 13:03:21,060 - INFO - 2 --> 0 --> 1
-2022-01-10 13:03:21,060 - INFO - Observable: Notifying observers...
-2022-01-10 13:03:21,060 - INFO - SmartHome: Garage closed!
-2022-01-10 13:03:21,060 - INFO - 0 --> 1 --> 0
-2022-01-10 13:03:21,060 - INFO - Observable: Notifying observers...
+2022-01-11 12:59:33,870 - INFO - Observable: Attached an observer.
+2022-01-11 12:59:33,870 - INFO - Observable: Attached an observer.
+2022-01-11 12:59:33,870 - INFO - Story 1
+2022-01-11 12:59:33,870 - INFO - SmartHome: Garage opened!
+2022-01-11 12:59:33,870 - INFO - Observable: Notifying observers...
+2022-01-11 12:59:33,870 - INFO - SmartHome: Light turned On!
+2022-01-11 12:59:33,870 - INFO - Observable: Notifying observers...
+2022-01-11 12:59:33,870 - INFO - Notification: Hey Alice! Bob forgot to close the garage
+2022-01-11 12:59:33,870 - INFO - Notification: Hey Bob! You'll still have to close the garage.
+2022-01-11 12:59:33,870 - INFO - SmartHome: Garage closed!
+2022-01-11 12:59:33,870 - INFO - Observable: Notifying observers...
+2022-01-11 12:59:33,870 - INFO - Story 2
+2022-01-11 12:59:33,870 - INFO - SmartHome: Garage opened!
+2022-01-11 12:59:33,870 - INFO - Observable: Notifying observers...
+2022-01-11 12:59:33,870 - INFO - Notification: Hey Alice! You'll still have to turn off the light.
+2022-01-11 12:59:33,870 - INFO - Notification: Hey Bob! Alice forgot to turn off the light.
+2022-01-11 12:59:33,870 - INFO - SmartHome: Garage closed!
+2022-01-11 12:59:33,870 - INFO - Observable: Notifying observers...
+2022-01-11 12:59:33,870 - INFO - Story 3
+2022-01-11 12:59:33,870 - INFO - SmartHome: Light turned Off!
+2022-01-11 12:59:33,870 - INFO - Observable: Notifying observers...
+2022-01-11 12:59:33,870 - INFO - SmartHome: Garage opened!
+2022-01-11 12:59:33,870 - INFO - Observable: Notifying observers...
+2022-01-11 12:59:33,870 - INFO - SmartHome: Garage closed!
+2022-01-11 12:59:33,870 - INFO - Observable: Notifying observers...
+2022-01-11 12:59:33,870 - INFO - 
+
+2022-01-11 12:59:33,870 - INFO - Story 4
+2022-01-11 12:59:33,870 - INFO - Observable: Detached an observer.
+2022-01-11 12:59:33,870 - INFO - 
+
+2022-01-11 12:59:33,870 - INFO - Story 1 without notification for Alice
+2022-01-11 12:59:33,871 - INFO - SmartHome: Garage opened!
+2022-01-11 12:59:33,871 - INFO - Observable: Notifying observers...
+2022-01-11 12:59:33,871 - INFO - SmartHome: Light turned On!
+2022-01-11 12:59:33,871 - INFO - Observable: Notifying observers...
+2022-01-11 12:59:33,871 - INFO - Notification: Hey Bob! You'll still have to close the garage.
+2022-01-11 12:59:33,871 - INFO - SmartHome: Garage closed!
+2022-01-11 12:59:33,871 - INFO - Observable: Notifying observers...
+2022-01-11 12:59:33,871 - INFO - 
+
+2022-01-11 12:59:33,871 - INFO - Story 2 without notification for Alice
+2022-01-11 12:59:33,871 - INFO - SmartHome: Garage opened!
+2022-01-11 12:59:33,871 - INFO - Observable: Notifying observers...
+2022-01-11 12:59:33,871 - INFO - Notification: Hey Bob! Alice forgot to turn off the light.
+2022-01-11 12:59:33,871 - INFO - SmartHome: Garage closed!
+2022-01-11 12:59:33,871 - INFO - Observable: Notifying observers...

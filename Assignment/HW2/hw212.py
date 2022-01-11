@@ -91,14 +91,13 @@ class LEDLight(SmartLight):
         adapter.setPWM(lvl)
 
     def switchState(self, isOn: bool, adapter):
-        if(isOn):
+        if isOn:
             if(adapter.temperature() <= CFG_LED_TEMPERATURE_MAX):
                 adapter.setVoltage(CFG_LED_VOLTAGE)
             else: 
                 self.printOverheatWarning(adapter)
-                return -1
         else:
-            adapter.setVoltage(0.0)
+            adapter.setVoltage(Volt(0))
 
         
 
@@ -109,13 +108,13 @@ class BulbLight(SmartLight):
         adapter.setVoltage(lvl * CFG_VOLTAGE_MAX // 100)
 
     def switchState(self, isOn: bool, adapter):
-        if(isOn):
+        if isOn:
             if(adapter.temperature() <= CFG_BULB_TEMPERATURE_MAX):
                 adapter.setVoltage(CFG_VOLTAGE_MAX)
             else: 
                 self.printOverheatWarning(adapter)
         else:
-            adapter.setVoltage(0.0)
+            adapter.setVoltage(Volt(0))
 
 
 # how we might test your code (examples)

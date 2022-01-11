@@ -34,14 +34,27 @@ def main():
     home.turn_light_off()
     home.open_garage()
     home.close_garage()
-    pass
+    # Story 4
+    logging.info("\n")
+    logging.info("Story 4")
+    home.detach(alice)
+    # Story 1 after detach
+    logging.info("\n")
+    logging.info("Story 1 without notification for Alice")
+    home.open_garage()
+    home.turn_light_on()
+    home.close_garage()
+    # Story 2 after detach
+    logging.info("\n")
+    logging.info("Story 2 without notification for Alice")
+    home.open_garage()
+    home.close_garage()
 
     ################################################################
     ########### 2.2.3 This is the end of your code #################
     ################################################################
 
 def test():
-
     # Create SmartHome
     observable = smart_home.SmartHome()
     observable.open_garage()
@@ -50,7 +63,6 @@ def test():
     observable.turn_light_off()
 
 if __name__ == "__main__":
-    
     # Initialize logger - DO NOT CHANGE
     logger = logging.getLogger()
     file_handler = logging.FileHandler('hw223_test.log', mode='w')
