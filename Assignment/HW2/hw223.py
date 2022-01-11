@@ -21,32 +21,25 @@ def main():
 
     # Implement Storyline
     # Story 1
-    logging.info("Story 1")
     home.open_garage()
     home.turn_light_on()
     home.close_garage()
     # Story 2
-    logging.info("Story 2")
     home.open_garage()
     home.close_garage()
     # Story 3
-    logging.info("Story 3")
     home.turn_light_off()
     home.open_garage()
     home.close_garage()
     # Story 4
-    logging.info("\n")
-    logging.info("Story 4")
     home.detach(alice)
     # Story 1 after detach
     logging.info("\n")
-    logging.info("Story 1 without notification for Alice")
+    logging.info("Stories without notification for Alice")
     home.open_garage()
     home.turn_light_on()
     home.close_garage()
     # Story 2 after detach
-    logging.info("\n")
-    logging.info("Story 2 without notification for Alice")
     home.open_garage()
     home.close_garage()
 

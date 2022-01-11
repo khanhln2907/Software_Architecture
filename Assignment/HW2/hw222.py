@@ -42,7 +42,6 @@ class SmartHome(Observable):
     # Initialize state variable(s) _state
     _state = SmartHomeState.GARAGE_CLOSE_LIGHT_OFF
     _prev_state = SmartHomeState.UNDEFINED
-    _prev_prev_state = SmartHomeState.UNDEFINED
     _light_state = False
     _garage_state = False
 
@@ -90,7 +89,7 @@ class SmartHome(Observable):
         self.logger.info("Observable: Notifying observers...")
         for observer in self._observers:
             observer.update(self)
-        
+
 
     ################################################################
     ########### 2.2.2 This is the beginning of your code ###########
@@ -131,14 +130,12 @@ class SmartHome(Observable):
 
 
     def update_new_state(self, new_state):
-        self._prev_prev_state = self._prev_state
         self._prev_state = self._state
         self._state = new_state
-        #logging.info("%d --> %d --> %d", self._prev_prev_state, self._prev_state, self._state)
         self.notify()
 
     def get_states(self):
-        return [self._state, self._prev_state, self._prev_prev_state]
+        return [self._state, self._prev_state]
 
     ################################################################
     ########### 2.2.2 This is the end of your code #################
@@ -170,9 +167,8 @@ attached to.
 class ObserverAlice(Observer):
     """
     Alice is notified to turn off the light when the state transitions detected are:
-        Init GARAGE_CLOSE_LIGHT_ON (staying at home) 
+        Init GARAGE_CLOSE_LIGHT_ON (staying at home)
         --> GARAGE_OPEN_LIGHT_ON (prepare to leave)
-        --> GARAGE_CLOSE_LIGHT_ON (leaves, forget the lights)
 
     Alice is notified that Bob forgets to close the garage when the state transitions detected are:
         Init GARAGE_OPEN_LIGHT_OFF (coming home, open the garage)
@@ -191,14 +187,13 @@ class ObserverAlice(Observer):
         
         if( (states[1] is SmartHomeState.GARAGE_OPEN_LIGHT_OFF) and\
             (states[0] is SmartHomeState.GARAGE_OPEN_LIGHT_ON)):
-            self.logger.info("Notification: Hey Alice! Bob forgot to close the garage")
+            self.logger.info("Notification: Hey Alice! Bob forgot to close the garage.")
 
 class ObserverBob(Observer):
     """
     Bob is notified that Alice forgets to turn off the light when the state transitions are:
         Init GARAGE_CLOSE_LIGHT_ON (staying at home) 
         --> GARAGE_OPEN_LIGHT_ON (prepare to leave)
-        --> GARAGE_CLOSE_LIGHT_ON (leaves, forget the lights)
 
     Bob is notified to close the garage when the state transitions are:
         Init GARAGE_OPEN_LIGHT_OFF (coming home, open the garage)
