@@ -1,4 +1,10 @@
 class SmartHomeState():
+    """
+    -   This class declares the designed states of the SmartHome
+    -   Any states are defined by the combination of lights and garage's states
+        Thus, it provides functions for mapping the state as well as necessary
+        state transition.
+    """
     UNDEFINED : int = -1
     GARAGE_CLOSE_LIGHT_OFF : int = 0
     GARAGE_OPEN_LIGHT_OFF : int = 1
