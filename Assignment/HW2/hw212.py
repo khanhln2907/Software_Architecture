@@ -88,6 +88,7 @@ class SmartLight:
 
 class LEDLight(SmartLight):
     def setBrightness(self, lvl, adapter):
+        print("{} sets duty_cycle={}%".format(adapter.name, lvl))
         adapter.setPWM(lvl)
 
     def switchState(self, isOn: bool, adapter):
@@ -105,6 +106,7 @@ class LEDLight(SmartLight):
 
 class BulbLight(SmartLight):
     def setBrightness(self, lvl, adapter):
+        print("{} adjusts brightness.".format(adapter.name))
         adapter.setVoltage(lvl * CFG_VOLTAGE_MAX // 100)
 
     def switchState(self, isOn: bool, adapter):
@@ -121,25 +123,23 @@ class BulbLight(SmartLight):
 # you can uncomment these for testing your solution but make sure 
 # the following lines are commented before submitting.
 # ----------------------------------------------------------
-ledlight  = DimmLight(DimmAdapter('led'), LEDLight())
-bulblight = DimmLight(DimmAdapter('bulb'), BulbLight())
+# ledlight  = DimmLight(DimmAdapter('led'), LEDLight())
+# bulblight = DimmLight(DimmAdapter('bulb'), BulbLight())
 
-g_esi['ledtemp'] = Kelvin(500)
+# g_esi['ledtemp'] = Kelvin(200)
 
-print("Before Testing")
-print(g_esi)
-
-ledlight.switchState(False)
-ledlight.switchState(True)
-ledlight.setBrightness(80)
+# ledlight.setBrightness(80)
+# ledlight.switchState(False)
+# ledlight.switchState(True)
+# ledlight.setBrightness(80)
 
 
-bulblight.switchState(True)
-bulblight.setBrightness(80)
-bulblight.switchState(False)
-bulblight.setBrightness(25)
-bulblight.switchState(True)
-bulblight.setBrightness(20)
+# bulblight.switchState(True)
+# bulblight.setBrightness(80)
+# bulblight.switchState(False)
+# bulblight.setBrightness(25)
+# bulblight.switchState(True)
+# bulblight.setBrightness(20)
 
-print("After Testing")
-print(g_esi)
+# print("After Testing")
+# print(g_esi)

@@ -36,8 +36,14 @@ g_esi={
 class DimmLight():
     # do not change function signature
     def switchState(self, isOn: bool):
-        '''todo: overwrite or implement'''
-        raise NotImplementedError
+        self.state = isOn   # This variable ensures that the lights are not turned switchOn by adjusting the brightness
+        if isOn:
+            if self.isValidTemperature():
+                self.switchOn()
+            else:
+                print("%s is too hot. Abort switching on!" %(self.getID()))
+        else:
+            self.switchOff()
 
     # do not change function signature
     def setBrightness(self, lvl: Percent):
@@ -50,6 +56,7 @@ class DimmLight():
 
     # Any child class must define these functions to perform the behaviours of DimmLight
     # The adapter class should define only the hardware related methods
+
     def isValidTemperature(self):
         raise NotImplementedError
 
@@ -59,6 +66,10 @@ class DimmLight():
     def switchOff(self):
         raise NotImplementedError
 
+    # Child class defines the specific ID
+    def getID(self):
+        raise NotImplementedError
+        
 
 class DimmAdapter(DimmLight):
     def __init__(self, name):
@@ -77,19 +88,12 @@ class DimmAdapter(DimmLight):
     def temperature(self):
         return Kelvin(g_esi[self.name+'temp'])  
 
-    def switchState(self, isOn: bool):
-        self.state = isOn   # This variable ensures that the lights are not turned switchOn by adjusting the brightness
-        if isOn:
-            if self.isValidTemperature():
-                self.switchOn()
-            else:
-                print("%s is too hot. Abort switching on!" %(self.name))
-        else:
-            self.switchOff()
-
+    def getID(self):
+        return self.name
 
 class LEDLight(DimmAdapter):
     def __init__(self, name):
+        self.state = False
         self.name = name
 
     # todo: your code here
@@ -103,11 +107,16 @@ class LEDLight(DimmAdapter):
         return self.setVoltage(Volt(0))
 
     def setBrightness(self, lvl: Percent):
-        print("{} sets duty_cycle={}%".format(self.name, lvl))
-        self.setPWM(lvl)
+        # Only change the brightness if the light was switched on
+        if self.state is True:
+            print("{} sets duty_cycle={}%".format(self.name, lvl))
+            self.setPWM(lvl)
+        else:
+            print("{} light was turned off. Ignore adjusting brightness.".format(self.name))
 
 class BulbLight(DimmAdapter):
     def __init__(self, name):
+        self.state = False
         self.name = name
 
     # todo: your code here
@@ -134,24 +143,25 @@ class BulbLight(DimmAdapter):
 # the following lines are commented before submitting.
 # ----------------------------------------------------------
 
-g_esi['ledtemp'] = Kelvin(500)
+# g_esi['ledtemp'] = Kelvin(200)
 
-print("Before Testing")
-print(g_esi)
+# print("Before Testing")
+# print(g_esi)
 
-ledlight = LEDLight('led')
-ledlight.switchState(False)
-ledlight.switchState(True)
-ledlight.setBrightness(80)
+# ledlight = LEDLight('led')
+# ledlight.setBrightness(80)
+# ledlight.switchState(False)
+# ledlight.switchState(True)
+# ledlight.setBrightness(80)
 
 
-bulblight = BulbLight('bulb')
-bulblight.switchState(True)
-bulblight.setBrightness(80)
-bulblight.switchState(False)
-bulblight.setBrightness(25)
-bulblight.switchState(True)
-bulblight.setBrightness(20)
+# bulblight = BulbLight('bulb')
+# bulblight.switchState(True)
+# bulblight.setBrightness(80)
+# bulblight.switchState(False)
+# bulblight.setBrightness(25)
+# bulblight.switchState(True)
+# bulblight.setBrightness(20)
 
-print("After Testing")
-print(g_esi)
+# print("After Testing")
+# print(g_esi)
