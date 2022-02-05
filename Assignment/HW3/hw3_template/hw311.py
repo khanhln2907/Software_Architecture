@@ -1,40 +1,91 @@
-class packet:
+"""
+Homework 311 with Strategy pattern
+"""
+
+class packet: # pylint: disable=too-few-public-methods
+    """
+    This class defines the packet data as interface between classes
+    """
     def __init__(self, data):
         self.data = data
 
 
 class PacketHandler:
-        def __init__(self, packet):
-            self.packet = packet
+    """
+    This class contains the data packet and the assigned policy
+    """
+    def __init__(self, data_packet):
+        self.packet = data_packet
+        self.policy = 0
 
-        def setpolicy(self, p):
-            self.policy = p
+    def setpolicy(self, policy):
+        """
+        This method sets the applied policy
+        """
+        self.policy = policy
 
-        def processSSH(self):
-            print("Processing SSH")
-            print(self.packet.data)
+    def process(self):
+        """
+        This method calls the setup policy to perform the data prcocessing
+        """
+        self.policy.process(self.packet.data)
 
-        def processTLS(self):
-            print("Processing TLS")
-            print(self.packet.data)
-               
-        def processIPSEC(self):
-            print("Processing IPSEC")
-            print(self.packet.data)
+class PacketStrategy: # pylint: disable=too-few-public-methods
+    """
+    This abstract class declares the common interfaces
+    for the child class with different strategies
+    """
+    def process(self, data):
+        """
+        Child class must declare the strategy
+        """
+        raise NotImplementedError
 
-        def process(self):
-            if self.policy == "SSH":
-                self.processSSH()
-            if self.policy == "TLS":
-                self.processTLS()
-            if self.policy == "IPsec":
-                self.processIPSEC()
+class SSHHandler(PacketStrategy): # pylint: disable=too-few-public-methods
+    """
+    This class handles SSH packet
+    """
+    def process(self, data):
+        """
+        Child class must declare the strategy
+        """
+        print("Processing SSH")
+        print(data)
 
+class TLSHandler(PacketStrategy): # pylint: disable=too-few-public-methods
+    """
+    This class handles TLS packet
+    """
+    def process(self, data):
+        """
+        Child class must declare the strategy
+        """
+        print("Processing TLS")
+        print(data)
+
+class IPSECSSHHandler(PacketStrategy): # pylint: disable=too-few-public-methods
+    """
+    This class handles IPSEC packet
+    """
+    def process(self, data):
+        """
+        Child class must declare the strategy
+        """
+        print("Processing IPSEC")
+        print(data)
 
 def main():
-    p = packet("[here is the packet data]")
-    handler = PacketHandler(p)
-    handler.policy= "TLS"
+    """
+    This function executes the test
+    """
+    # Create a specific packet
+    my_packet = packet("[here is the packet data]")
+    # Create the packet handler
+    handler = PacketHandler(my_packet)
+    # Set the policy to the handler
+    my_policy = SSHHandler()
+    handler.setpolicy(my_policy)
+    # process the packet
     handler.process()
 
 
