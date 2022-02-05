@@ -22,7 +22,9 @@ class PacketHandler:
         """
         This method sets the applied policy
         """
-        self.policy = policy
+        self.policy = self.policy_list.get(policy)
+        if self.policy is None:
+            assert False, "Unknown Policy"
 
     def process(self):
         """
@@ -63,7 +65,7 @@ class TLSHandler(PacketStrategy): # pylint: disable=too-few-public-methods
         print("Processing TLS")
         print(data)
 
-class IPSECSSHHandler(PacketStrategy): # pylint: disable=too-few-public-methods
+class IPsecHandler(PacketStrategy): # pylint: disable=too-few-public-methods
     """
     This class handles IPSEC packet
     """
@@ -71,7 +73,7 @@ class IPSECSSHHandler(PacketStrategy): # pylint: disable=too-few-public-methods
         """
         Child class must declare the strategy
         """
-        print("Processing IPSEC")
+        print("Processing IPsec")
         print(data)
 
 def main():
@@ -83,8 +85,7 @@ def main():
     # Create the packet handler
     handler = PacketHandler(my_packet)
     # Set the policy to the handler
-    my_policy = SSHHandler()
-    handler.setpolicy(my_policy)
+    handler.setpolicy("SSH")
     # process the packet
     handler.process()
 
