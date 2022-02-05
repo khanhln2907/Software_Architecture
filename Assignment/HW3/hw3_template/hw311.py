@@ -16,7 +16,7 @@ class PacketHandler:
     """
     def __init__(self, data_packet):
         self.packet = data_packet
-        self.policy = 0
+        self.policy = PacketStrategy()
 
     def setpolicy(self, policy):
         """
