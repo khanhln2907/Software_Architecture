@@ -2,14 +2,37 @@
 Rules Engine
 """
 
+from ast import Not, operator
 from typing import Callable, Any   # Typing Py3.x
-
+import operator
+from smartl.trigger import Relation
 
 
 class ICondition:
     def isTrue(self) -> bool:
         raise NotImplementedError 
 
+
+class IntRel(Relation):
+    """
+    This class was already defined from IntRel
+    """
+    pass
+
+class BoolRel():
+    NOT = operator.not_
+    AND = operator.and_
+    OR = operator.or_
+
+class IntCondition(ICondition):
+    def __init__(self, threshold: int, rel: IntRel):
+        self._threshold = threshold
+        self._relation = rel
+
+    def isTrue(self, inval: int):
+        return eval(
+            str(inval) + self._relation + str(self._threshold)
+        )  # neither safe nor secure...
 
 
 # example test code (same as in hw324)

@@ -8,13 +8,16 @@ from smartl.lightcollections import *
 
 
 class SwitchLightFactory:
+    """
+    This is the factory pattern of the switch light class
+    """
     def __init__(self, lm):
         self.light_manager = lm 
 
     def createLight(self, name : str):
         new_light = SwitchLight(name)
         self.light_manager.addLight(new_light)
-    
+
 
 # example usage of your code
 def main():
