@@ -6,7 +6,6 @@ from smartl.trigger import *
 from smartl.lightcollections import *
 
 
-
 class SwitchLightFactory:
     """
     This is the factory pattern of the switch light class
