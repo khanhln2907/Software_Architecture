@@ -83,7 +83,7 @@ def main():
     # Create the packet handler
     handler = PacketHandler(my_packet)
     # Set the policy to the handler
-    my_policy = IPsecHandler()
+    my_policy = SSHHandler()
     handler.setpolicy(my_policy)
     # process the packet
     handler.process()

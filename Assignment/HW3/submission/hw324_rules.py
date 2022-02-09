@@ -2,11 +2,7 @@
 Your task is to implement another example, similar to the following.
 """
 
-from scipy import rand
 from hw323_rules import RulesEngine, IntCondition, BoolCondition, IntRel, BoolRel, Rule, Action
-from smartl.devices import AmbientSensor, Clock
-
-import random
 
 def test_given_rule():
     g_theHour = 0
@@ -71,10 +67,10 @@ def test_new_rule():
     isSmartControlActivated = IntCondition(checkAutoMode, IntRel.EQ, True) # check if this mode is switched on
     isSensorWorking = IntCondition(checkSensor, IntRel.EQ, True) # check the sensors' availability
     isFeasible = BoolCondition(isSensorWorking, BoolRel.AND, isSmartControlActivated) # regulate only if sensors and mode are available
-    rBrightnessAdjust = Rule("Adjust_Brightness", isFeasible, Action(regulateBrightness, None))
+    rBrightnessAdjust = Rule("Brightness", isFeasible, Action(regulateBrightness, None))
     engine.addRule(rBrightnessAdjust)
 
-    # Some helping variables for the test
+    # Some testing variables 
     isAutoMode = False          # this simulates automatic mode is activated (True)
     isSensorAvailable = True    # this simulates sensors are available (True)
     isTodayWorkingDay = True    # this simulates holidays (False)
@@ -97,10 +93,10 @@ def test_new_rule():
             isAutoMode = True
             print(" Turned on automatic mode", end='\n')
         
-        # Assume at 16 o'clock the sensors are shut down for the maintenances
+        # Assume at 16 o'clock the sensors are defect
         elif hour == 16:
             isSensorAvailable = False
-            print(" Ambient Sensors are shutdown for maintenance", end='\n')
+            print(" Ambient Sensors are defect", end='\n')
 
         elif hour == 18:
             isSensorAvailable = True
@@ -113,11 +109,6 @@ def test_new_rule():
         engine.check()
 
 
-
-
-
-
-
 # run your code
-# given_rule()
+#test_given_rule()
 test_new_rule()
