@@ -43,6 +43,7 @@ class LightManager{
 }
 
 class SwitchLight{
+    -_state: Bool
     +update(msg: LightConfig)
     +switchOn()
     +switchOff()
