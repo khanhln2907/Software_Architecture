@@ -21,11 +21,11 @@ title 3-2-1 Smart Light Factory
 
 ' Abstract Classes
 ' ============================
-class Light{
+interface Light{
     +update(msg: LightConfig)
 }
 
-class Observer{
+interface Observer{
     +update(msg)
 }
 
@@ -33,7 +33,7 @@ class Device{
     #name: String
 }
 
-class LightFactory{
+Interface LightFactory{
     #_lm: LightManager 
     +createLight(name : String)
     #createConcreteLight(name: String)

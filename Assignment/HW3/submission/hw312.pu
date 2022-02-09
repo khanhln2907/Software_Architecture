@@ -22,14 +22,14 @@ title 3-1-2 Strategy Refactoring
 ' Abstract Classes
 ' ============================
 class PacketHandler{
-    +package: packet
+    +packet: packet
     +policy: PacketStrategy
 
     +setpolicy(policy: PacketStrategy)
     +process()
 }
 
-class PacketStrategy{
+interface PacketStrategy{
     +process(p: packet)
 }
 
