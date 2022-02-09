@@ -35,7 +35,7 @@ class Device{
 
 Interface LightFactory{
     #_lm: LightManager 
-    +createLight(name : String)
+    +createLight(name: String)
     #createConcreteLight(name: String)
 }
 

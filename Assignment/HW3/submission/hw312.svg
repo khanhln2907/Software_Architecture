@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="251px" preserveAspectRatio="none" style="width:753px;height:251px;background:#FFFFFF;" version="1.1" viewBox="0 0 753 251" width="753px" zoomAndPan="magnify"><defs><filter height="300%" id="f1nv6eo70ighzv" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><text fill="#000000" font-family="sans-serif" font-size="18" lengthAdjust="spacing" textLength="248" x="246" y="16.708">3-1-2 Strategy Refactoring</text><!--MD5=[083ed93fff45367e26172f713d23e8d6]
+class PacketHandler--><rect codeLine="23" fill="#FEFECE" filter="url(#f1nv6eo70ighzv)" height="99.2188" id="PacketHandler" style="stroke:#A80036;stroke-width:1.5;" width="211" x="147.5" y="27.9531"/><ellipse cx="205.75" cy="43.9531" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M208.0938,39.625 C207.1563,39.1875 206.5625,39.0469 205.6875,39.0469 C203.0625,39.0469 201.0625,41.125 201.0625,43.8438 L201.0625,44.9688 C201.0625,47.5469 203.1719,49.4375 206.0625,49.4375 C207.2813,49.4375 208.4375,49.1406 209.1875,48.5938 C209.7656,48.1875 210.0938,47.7344 210.0938,47.3438 C210.0938,46.8906 209.7031,46.5 209.2344,46.5 C209.0156,46.5 208.8125,46.5781 208.625,46.7656 C208.1719,47.25 208.1719,47.25 207.9844,47.3438 C207.5625,47.6094 206.875,47.7344 206.1094,47.7344 C204.0625,47.7344 202.7656,46.6406 202.7656,44.9375 L202.7656,43.8438 C202.7656,42.0625 204.0156,40.75 205.75,40.75 C206.3281,40.75 206.9375,40.9063 207.4063,41.1563 C207.8906,41.4375 208.0625,41.6563 208.1563,42.0625 C208.2188,42.4688 208.25,42.5938 208.3906,42.7188 C208.5313,42.8594 208.7656,42.9688 208.9844,42.9688 C209.25,42.9688 209.5156,42.8281 209.6875,42.6094 C209.7969,42.4531 209.8281,42.2656 209.8281,41.8438 L209.8281,40.4219 C209.8281,39.9844 209.8125,39.8594 209.7188,39.7031 C209.5625,39.4375 209.2813,39.2969 208.9844,39.2969 C208.6875,39.2969 208.4844,39.3906 208.2656,39.7031 L208.0938,39.625 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="86" x="226.25" y="48.1074">PacketHandler</text><line style="stroke:#A80036;stroke-width:1.5;" x1="148.5" x2="357.5" y1="59.9531" y2="59.9531"/><ellipse cx="158.5" cy="70.9531" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="83" x="167.5" y="74.1636">packet: packet</text><ellipse cx="158.5" cy="83.7578" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="126" x="167.5" y="86.9683">policy: PacketStrategy</text><line style="stroke:#A80036;stroke-width:1.5;" x1="148.5" x2="357.5" y1="93.5625" y2="93.5625"/><ellipse cx="158.5" cy="104.5625" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="185" x="167.5" y="107.7729">setpolicy(policy: PacketStrategy)</text><ellipse cx="158.5" cy="117.3672" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="52" x="167.5" y="120.5776">process()</text><!--MD5=[8eca6518867c2b65d36e5b88a4bb7d68]
+class PacketStrategy--><rect codeLine="31" fill="#FEFECE" filter="url(#f1nv6eo70ighzv)" height="60.8047" id="PacketStrategy" style="stroke:#A80036;stroke-width:1.5;" width="130" x="419" y="46.9531"/><ellipse cx="436.7" cy="62.9531" fill="#B4A7E5" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M437.6531,59.7344 L439.3719,59.7344 C439.7625,59.7344 439.95,59.7031 440.075,59.625 C440.3406,59.4688 440.4813,59.1875 440.4813,58.8906 C440.4813,58.625 440.3719,58.3594 440.1375,58.1875 C439.9656,58.0781 439.825,58.0469 439.3719,58.0469 L434.2313,58.0469 C433.7938,58.0469 433.6688,58.0625 433.5125,58.1563 C433.2625,58.3125 433.1063,58.6094 433.1063,58.8906 C433.1063,59.1719 433.2469,59.4219 433.4656,59.5938 C433.6219,59.7031 433.8094,59.7344 434.2313,59.7344 L435.95,59.7344 L435.95,66.25 L434.2313,66.25 C433.7938,66.25 433.6688,66.2656 433.5125,66.375 C433.2625,66.5313 433.1063,66.8125 433.1063,67.1094 C433.1063,67.3594 433.2469,67.625 433.4656,67.7813 C433.6219,67.9063 433.825,67.9531 434.2313,67.9531 L439.3719,67.9531 C440.1219,67.9531 440.4813,67.6719 440.4813,67.1094 C440.4813,66.8281 440.3719,66.5781 440.1375,66.4063 C439.9656,66.2813 439.825,66.25 439.3719,66.25 L437.6531,66.25 L437.6531,59.7344 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="92" x="451.3" y="67.1074">PacketStrategy</text><line style="stroke:#A80036;stroke-width:1.5;" x1="420" x2="548" y1="78.9531" y2="78.9531"/><line style="stroke:#A80036;stroke-width:1.5;" x1="420" x2="548" y1="86.9531" y2="86.9531"/><ellipse cx="430" cy="97.9531" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="104" x="439" y="101.1636">process(p: packet)</text><!--MD5=[d158a6dce09f5d39994450e35f24e50d]
+class packet--><rect codeLine="37" fill="#FEFECE" filter="url(#f1nv6eo70ighzv)" height="60.8047" id="packet" style="stroke:#A80036;stroke-width:1.5;" width="80" x="7" y="46.9531"/><ellipse cx="25.15" cy="62.9531" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M27.4938,58.625 C26.5563,58.1875 25.9625,58.0469 25.0875,58.0469 C22.4625,58.0469 20.4625,60.125 20.4625,62.8438 L20.4625,63.9688 C20.4625,66.5469 22.5719,68.4375 25.4625,68.4375 C26.6813,68.4375 27.8375,68.1406 28.5875,67.5938 C29.1656,67.1875 29.4938,66.7344 29.4938,66.3438 C29.4938,65.8906 29.1031,65.5 28.6344,65.5 C28.4156,65.5 28.2125,65.5781 28.025,65.7656 C27.5719,66.25 27.5719,66.25 27.3844,66.3438 C26.9625,66.6094 26.275,66.7344 25.5094,66.7344 C23.4625,66.7344 22.1656,65.6406 22.1656,63.9375 L22.1656,62.8438 C22.1656,61.0625 23.4156,59.75 25.15,59.75 C25.7281,59.75 26.3375,59.9063 26.8063,60.1563 C27.2906,60.4375 27.4625,60.6563 27.5563,61.0625 C27.6188,61.4688 27.65,61.5938 27.7906,61.7188 C27.9313,61.8594 28.1656,61.9688 28.3844,61.9688 C28.65,61.9688 28.9156,61.8281 29.0875,61.6094 C29.1969,61.4531 29.2281,61.2656 29.2281,60.8438 L29.2281,59.4219 C29.2281,58.9844 29.2125,58.8594 29.1188,58.7031 C28.9625,58.4375 28.6813,58.2969 28.3844,58.2969 C28.0875,58.2969 27.8844,58.3906 27.6656,58.7031 L27.4938,58.625 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="41" x="39.85" y="67.1074">packet</text><line style="stroke:#A80036;stroke-width:1.5;" x1="8" x2="86" y1="78.9531" y2="78.9531"/><ellipse cx="18" cy="89.9531" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="54" x="27" y="93.1636">data: Any</text><line style="stroke:#A80036;stroke-width:1.5;" x1="8" x2="86" y1="99.7578" y2="99.7578"/><!--MD5=[08ae0e3a1b15f7739d85ed8817ee7386]
+class SSHHandler--><rect codeLine="41" fill="#FEFECE" filter="url(#f1nv6eo70ighzv)" height="60.8047" id="SSHHandler" style="stroke:#A80036;stroke-width:1.5;" width="130" x="229" y="176.9531"/><ellipse cx="255.7" cy="192.9531" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M258.0438,188.625 C257.1063,188.1875 256.5125,188.0469 255.6375,188.0469 C253.0125,188.0469 251.0125,190.125 251.0125,192.8438 L251.0125,193.9688 C251.0125,196.5469 253.1219,198.4375 256.0125,198.4375 C257.2313,198.4375 258.3875,198.1406 259.1375,197.5938 C259.7156,197.1875 260.0438,196.7344 260.0438,196.3438 C260.0438,195.8906 259.6531,195.5 259.1844,195.5 C258.9656,195.5 258.7625,195.5781 258.575,195.7656 C258.1219,196.25 258.1219,196.25 257.9344,196.3438 C257.5125,196.6094 256.825,196.7344 256.0594,196.7344 C254.0125,196.7344 252.7156,195.6406 252.7156,193.9375 L252.7156,192.8438 C252.7156,191.0625 253.9656,189.75 255.7,189.75 C256.2781,189.75 256.8875,189.9063 257.3563,190.1563 C257.8406,190.4375 258.0125,190.6563 258.1063,191.0625 C258.1688,191.4688 258.2,191.5938 258.3406,191.7188 C258.4813,191.8594 258.7156,191.9688 258.9344,191.9688 C259.2,191.9688 259.4656,191.8281 259.6375,191.6094 C259.7469,191.4531 259.7781,191.2656 259.7781,190.8438 L259.7781,189.4219 C259.7781,188.9844 259.7625,188.8594 259.6688,188.7031 C259.5125,188.4375 259.2313,188.2969 258.9344,188.2969 C258.6375,188.2969 258.4344,188.3906 258.2156,188.7031 L258.0438,188.625 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="72" x="272.3" y="197.1074">SSHHandler</text><line style="stroke:#A80036;stroke-width:1.5;" x1="230" x2="358" y1="208.9531" y2="208.9531"/><line style="stroke:#A80036;stroke-width:1.5;" x1="230" x2="358" y1="216.9531" y2="216.9531"/><ellipse cx="240" cy="227.9531" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="104" x="249" y="231.1636">process(p: packet)</text><!--MD5=[8a08e379a799acf2e30ccb9f07a0134f]
+class TLSHandler--><rect codeLine="45" fill="#FEFECE" filter="url(#f1nv6eo70ighzv)" height="60.8047" id="TLSHandler" style="stroke:#A80036;stroke-width:1.5;" width="130" x="419" y="176.9531"/><ellipse cx="447.5" cy="192.9531" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M449.8438,188.625 C448.9063,188.1875 448.3125,188.0469 447.4375,188.0469 C444.8125,188.0469 442.8125,190.125 442.8125,192.8438 L442.8125,193.9688 C442.8125,196.5469 444.9219,198.4375 447.8125,198.4375 C449.0313,198.4375 450.1875,198.1406 450.9375,197.5938 C451.5156,197.1875 451.8438,196.7344 451.8438,196.3438 C451.8438,195.8906 451.4531,195.5 450.9844,195.5 C450.7656,195.5 450.5625,195.5781 450.375,195.7656 C449.9219,196.25 449.9219,196.25 449.7344,196.3438 C449.3125,196.6094 448.625,196.7344 447.8594,196.7344 C445.8125,196.7344 444.5156,195.6406 444.5156,193.9375 L444.5156,192.8438 C444.5156,191.0625 445.7656,189.75 447.5,189.75 C448.0781,189.75 448.6875,189.9063 449.1563,190.1563 C449.6406,190.4375 449.8125,190.6563 449.9063,191.0625 C449.9688,191.4688 450,191.5938 450.1406,191.7188 C450.2813,191.8594 450.5156,191.9688 450.7344,191.9688 C451,191.9688 451.2656,191.8281 451.4375,191.6094 C451.5469,191.4531 451.5781,191.2656 451.5781,190.8438 L451.5781,189.4219 C451.5781,188.9844 451.5625,188.8594 451.4688,188.7031 C451.3125,188.4375 451.0313,188.2969 450.7344,188.2969 C450.4375,188.2969 450.2344,188.3906 450.0156,188.7031 L449.8438,188.625 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="68" x="464.5" y="197.1074">TLSHandler</text><line style="stroke:#A80036;stroke-width:1.5;" x1="420" x2="548" y1="208.9531" y2="208.9531"/><line style="stroke:#A80036;stroke-width:1.5;" x1="420" x2="548" y1="216.9531" y2="216.9531"/><ellipse cx="430" cy="227.9531" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="104" x="439" y="231.1636">process(p: packet)</text><!--MD5=[19f1ba7f2e0ce735a78025c24d03a9d5]
+class IPsecHandler--><rect codeLine="49" fill="#FEFECE" filter="url(#f1nv6eo70ighzv)" height="60.8047" id="IPsecHandler" style="stroke:#A80036;stroke-width:1.5;" width="130" x="609" y="176.9531"/><ellipse cx="633" cy="192.9531" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M635.3438,188.625 C634.4063,188.1875 633.8125,188.0469 632.9375,188.0469 C630.3125,188.0469 628.3125,190.125 628.3125,192.8438 L628.3125,193.9688 C628.3125,196.5469 630.4219,198.4375 633.3125,198.4375 C634.5313,198.4375 635.6875,198.1406 636.4375,197.5938 C637.0156,197.1875 637.3438,196.7344 637.3438,196.3438 C637.3438,195.8906 636.9531,195.5 636.4844,195.5 C636.2656,195.5 636.0625,195.5781 635.875,195.7656 C635.4219,196.25 635.4219,196.25 635.2344,196.3438 C634.8125,196.6094 634.125,196.7344 633.3594,196.7344 C631.3125,196.7344 630.0156,195.6406 630.0156,193.9375 L630.0156,192.8438 C630.0156,191.0625 631.2656,189.75 633,189.75 C633.5781,189.75 634.1875,189.9063 634.6563,190.1563 C635.1406,190.4375 635.3125,190.6563 635.4063,191.0625 C635.4688,191.4688 635.5,191.5938 635.6406,191.7188 C635.7813,191.8594 636.0156,191.9688 636.2344,191.9688 C636.5,191.9688 636.7656,191.8281 636.9375,191.6094 C637.0469,191.4531 637.0781,191.2656 637.0781,190.8438 L637.0781,189.4219 C637.0781,188.9844 637.0625,188.8594 636.9688,188.7031 C636.8125,188.4375 636.5313,188.2969 636.2344,188.2969 C635.9375,188.2969 635.7344,188.3906 635.5156,188.7031 L635.3438,188.625 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="78" x="649" y="197.1074">IPsecHandler</text><line style="stroke:#A80036;stroke-width:1.5;" x1="610" x2="738" y1="208.9531" y2="208.9531"/><line style="stroke:#A80036;stroke-width:1.5;" x1="610" x2="738" y1="216.9531" y2="216.9531"/><ellipse cx="620" cy="227.9531" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="104" x="629" y="231.1636">process(p: packet)</text><!--MD5=[6d8b5190152fc99cb56a47c8bbede64f]
+link PacketHandler to PacketStrategy--><path codeLine="56" d="M370.574,77.4531 C370.574,77.4531 394.316,77.4531 405.596,77.4531 " fill="none" id="PacketHandler-PacketStrategy" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="418.837,77.4531,409.837,73.4531,413.837,77.4531,409.837,81.4531,418.837,77.4531" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="413.837" x2="405.837" y1="77.4531" y2="77.4531"/><polygon fill="#A80036" points="358.574,77.4531,364.574,81.4531,370.574,77.4531,364.574,73.4531,358.574,77.4531" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="366.6208" y="73.9661">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="402.84" y="73.6718">1</text><!--MD5=[ec007afcbadf9624878bbedda47ad363]
+reverse link packet to PacketHandler--><path codeLine="57" d="M92.4095,77.4531 C110.758,77.4531 129.106,77.4531 147.454,77.4531 " fill="none" id="packet-backto-PacketHandler" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="87.2344,77.4531,96.2344,81.4531,92.2344,77.4531,96.2344,73.4531,87.2344,77.4531" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="95.1137" y="73.2133">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="131.4092" y="73.9661">1</text><!--MD5=[90b2e391ea2f5ef7b6c3026c8b87db91]
+reverse link PacketStrategy to SSHHandler--><path codeLine="59" d="M423.315,119.3351 C395.523,138.0585 363.204,159.8313 337.828,176.9266 " fill="none" id="PacketStrategy-backto-SSHHandler" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="none" points="419.434,113.5101,439.933,108.1411,427.257,125.1201,419.434,113.5101" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[1309fa55db39ea261134b6ee21deadcf]
+reverse link PacketStrategy to TLSHandler--><path codeLine="60" d="M484,128.2711 C484,144.7235 484,162.4924 484,176.9266 " fill="none" id="PacketStrategy-backto-TLSHandler" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="none" points="477,128.1411,484,108.1411,491,128.1401,477,128.1411" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[696c8076ba8791049fc698cc2f3546e7]
+reverse link PacketStrategy to IPsecHandler--><path codeLine="61" d="M544.685,119.3351 C572.477,138.0585 604.796,159.8313 630.172,176.9266 " fill="none" id="PacketStrategy-backto-IPsecHandler" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="none" points="540.743,125.1201,528.067,108.1411,548.566,113.5101,540.743,125.1201" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[0a357cd97bb5702e19e233179fffb17b]
+@startuml
+' Settings
+' ============================
+
+' use +,#,- instead of icons
+'skinparam classAttributeIconSize 0
+
+' horizontal distance in px
+skinparam nodesep 60 
+
+' vertical distance in px
+skinparam ranksep 50
+
+' use only straight lines (ortho/polyline)
+'skinparam linetype polyline
+
+' title
+title 3-1-2 Strategy Refactoring
+
+
+
+' Abstract Classes
+' ============================
+class PacketHandler{
+    +packet: packet
+    +policy: PacketStrategy
+
+    +setpolicy(policy: PacketStrategy)
+    +process()
+}
+
+interface PacketStrategy{
+    +process(p: packet)
+}
+
+' Concrete Classes
+' ============================
+class packet{
+    +data: Any
+}
+
+class SSHHandler{
+    +process(p: packet)
+}
+
+class TLSHandler{
+    +process(p: packet)
+}
+
+class IPsecHandler{
+    +process(p: packet)
+}
+
+
+' Relations
+' ================================
+PacketHandler "1" *-r-> "1" PacketStrategy
+PacketHandler "1" -l-> "1" packet
+
+SSHHandler -u-|> PacketStrategy
+TLSHandler -u-|> PacketStrategy
+IPsecHandler -u-|> PacketStrategy
+@enduml
+
+@startuml
+
+
+skinparam nodesep 60 
+
+skinparam ranksep 50
+
+
+title 3-1-2 Strategy Refactoring
+
+
+
+class PacketHandler{
+    +packet: packet
+    +policy: PacketStrategy
+
+    +setpolicy(policy: PacketStrategy)
+    +process()
+}
+
+interface PacketStrategy{
+    +process(p: packet)
+}
+
+class packet{
+    +data: Any
+}
+
+class SSHHandler{
+    +process(p: packet)
+}
+
+class TLSHandler{
+    +process(p: packet)
+}
+
+class IPsecHandler{
+    +process(p: packet)
+}
+
+
+PacketHandler "1" *-r-> "1" PacketStrategy
+PacketHandler "1" -l-> "1" packet
+
+SSHHandler -u-|> PacketStrategy
+TLSHandler -u-|> PacketStrategy
+IPsecHandler -u-|> PacketStrategy
+@enduml
+
+PlantUML version 1.2022.2beta1(Unknown compile time)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>
