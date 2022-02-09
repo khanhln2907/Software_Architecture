@@ -21,29 +21,57 @@ title 3-2-1 Smart Light Factory
 
 ' Abstract Classes
 ' ============================
+class Light{
+    +update(msg: LightConfig)
+}
 
+class Observer{
+    +update(msg)
+}
 
-class SmartLight
-
-
+class Device{
+    -name: String
+}
 
 ' Concrete Classes
 ' ============================
-class LightManager
+class LightManager{
+    -_lights: Dict<String, Light> 
+    +getLight(name: String)
+    +addLight(l: Light)
+    +delTrigger(name: String)
+}
 
-class SwitchLight
+class SwitchLight{
+    +update(msg: LightConfig)
+    +switchOn()
+    +switchOff()
+}
 
-class DimmLight
+class DimmLight{
+    +update(msg: LightConfig)
+    +setBrightness(lvl: Percent)
+}
 
+class SwitchLightFactory{
+    -_lm: LightManager 
+    +createLight(name: String)
+}
 
+class DimmLightFactory{
+    +createLight(name: String)
+}
 
 
 ' Relations
 ' ================================
-LightManager -r-> SmartLight
-
-SwitchLight -u-|> SmartLight
-DimmLight -u-|> SmartLight
+DimmLightFactory -u-|> SwitchLightFactory
+SwitchLightFactory -r-> LightManager
+LightManager -r-> Light
+Light -u-|> Observer
+Light -u-|> Device
+SwitchLight -u-|> Light
+DimmLight -u-|> SwitchLight
 
 
 @enduml
