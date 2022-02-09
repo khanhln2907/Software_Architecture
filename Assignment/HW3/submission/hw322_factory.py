@@ -6,24 +6,33 @@ from smartl.trigger import *
 from smartl.lightcollections import *
 
 
-class SwitchLightFactory:
+class LightFactory:
     """
-    This class represents the factory pattern for the SwitchLight class  
+    This abstract class represents the factory pattern for Lights  
     """
     def __init__(self, lm):
         self._lm = lm 
 
     def createLight(self, name : str):
-        new_light = SwitchLight(name)
-        self._lm.addLight(new_light)
+        light = self.createConcreteLight(name)
+        self._lm.addLight(light)
+
+    def createConcreteLight(self, name: str):
+        raise NotImplementedError
+
+class SwitchLightFactory(LightFactory):
+    """
+    This class declare the factory pattern for the SwitchLight class  
+    """
+    def createConcreteLight(self, name : str):
+        return SwitchLight(name)
 
 class DimmLightFactory(SwitchLightFactory):
     """
-    This class represents the factory pattern for the DimmLight class  
+    This class declare the factory pattern for the DimmLight class  
     """
-    def createLight(self, name : str):
-        new_light = DimmLight(name)
-        self._lm.addLight(new_light)
+    def createConcreteLight(self, name : str):
+        return DimmLight(name)
 
 
 # example usage of your code

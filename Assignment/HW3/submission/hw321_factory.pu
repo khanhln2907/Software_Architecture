@@ -30,7 +30,11 @@ class Observer{
 }
 
 class Device{
-    -name: String
+    #name: String
+}
+
+class LightFactory{
+    #_lm: LightManager 
 }
 
 ' Concrete Classes
@@ -50,12 +54,12 @@ class SwitchLight{
 }
 
 class DimmLight{
+    -_brightness: Percent
     +update(msg: LightConfig)
     +setBrightness(lvl: Percent)
 }
 
 class SwitchLightFactory{
-    -_lm: LightManager 
     +createLight(name: String)
 }
 
@@ -66,9 +70,12 @@ class DimmLightFactory{
 
 ' Relations
 ' ================================
+
+SwitchLightFactory -u-|> LightFactory
+
 DimmLightFactory -u-|> SwitchLightFactory
-SwitchLightFactory -r-> LightManager
-LightManager -r-> Light
+LightFactory "1" -r-> "1" LightManager
+LightManager "1" -r-> "*" Light
 Light -u-|> Observer
 Light -u-|> Device
 SwitchLight -u-|> Light
