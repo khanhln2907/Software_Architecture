@@ -31,7 +31,7 @@ class ICondition:
 class Action:
     def __init__(self, func : Callable, params = Any):
         self.method = func
-        self.param = Any
+        self.param = params
 
     def exec(self):
         self.method(self.param)

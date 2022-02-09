@@ -40,8 +40,6 @@ def test_given_rule():
 
 
 def test_new_rule():
-    # todo: implement your code
-
     isAutoMode = True
     def checkAutoMode():
         return isAutoMode
@@ -50,30 +48,40 @@ def test_new_rule():
     def checkSensor():
         return isSensorAvailable
 
-    def regulate_brightness(x = None):
-        print("Adjusting brightness ...", end='')
+    isTodayWorkingDay = False
+    def checkWorkingDay():
+        return isTodayWorkingDay
 
-
-    lightSensor = AmbientSensor("DarkerStimulator")
+    def regulateBrightness(x = None):
+        print(" Adjusting brightness ...", end='')
     
-    # rules engine
+    def showAnimation(sec : int):
+        print(" Showing animation for {} seconds on holiday!".format(sec), end = '')
+
+    # Rules engine
     engine = RulesEngine()
       
-    isSmartControlActivated = IntCondition(checkAutoMode, IntRel.EQ, True)
-    isSensorWorking = IntCondition(checkSensor, IntRel.EQ, True)
-
-    isFeasible = BoolCondition(isSensorWorking, BoolRel.AND, isSmartControlActivated)
-
-    rBrightnessAdjust = Rule("Adjust Brightness", isFeasible, Action(regulate_brightness, None))
-
+    # Rule for showing the animation for 20 seconds on holidays
+    isNormalDay = IntCondition(checkWorkingDay, IntRel.EQ, True) # check if today is the normal working day
+    isChangeColor = BoolCondition(isNormalDay, BoolRel.NOT, None) # condition to be a holiday
+    rChangeColor = Rule("Animation", isChangeColor, Action(showAnimation, 20)) # show animation for 20 seconds on holiday
+    engine.addRule(rChangeColor)
+    
+    # Rule for using automatic brightness adjustment: 
+    isSmartControlActivated = IntCondition(checkAutoMode, IntRel.EQ, True) # check if this mode is switched on
+    isSensorWorking = IntCondition(checkSensor, IntRel.EQ, True) # check the sensors' availability
+    isFeasible = BoolCondition(isSensorWorking, BoolRel.AND, isSmartControlActivated) # regulate only if sensors and mode are available
+    rBrightnessAdjust = Rule("Adjust_Brightness", isFeasible, Action(regulateBrightness, None))
     engine.addRule(rBrightnessAdjust)
 
     # Some helping variables for the test
-    timeSensorDefected = random.randint(11, 16)
+    isAutoMode = False          # this simulates automatic mode is activated (True)
+    isSensorAvailable = True    # this simulates sensors are available (True)
+    isTodayWorkingDay = True    # this simulates holidays (False)
 
     # Test begins ...    
     for hour in range(0,24):
-        print("\n Time = {} o'clock: ".format(hour), end='')
+        print("\nTime = {} o'clock: \n".format(hour), end='')
 
         # Sensors and automatic control are turned off during midnight 
         if hour == 0:
@@ -81,27 +89,29 @@ def test_new_rule():
             isSensorAvailable = False
         # In the morning, the sensors are activated
         elif hour == 6:
-            print("Ambient sensors start sampling...", end='')
             isSensorAvailable = True
+            print(" Ambient sensors start sampling...", end='\n')
 
         # At the midday, someone activates the brightness controller
         elif hour == 10:
-            print("Switched to automatic mode", end='')
             isAutoMode = True
+            print(" Turned on automatic mode", end='\n')
         
-        # Suddenly the sensor is unavailable for a while:
-        elif hour == timeSensorDefected:
-            print("Sensors are no longer available", end='')
+        # Assume at 16 o'clock the sensors are shut down for the maintenances
+        elif hour == 16:
             isSensorAvailable = False
+            print(" Ambient Sensors are shutdown for maintenance", end='\n')
 
         elif hour == 18:
-            print("Good evening ...", end='')
+            isSensorAvailable = True
+            print(" Ambient Sensors are available again", end='\n')
 
+        elif hour == 20:
+            print(" Automatic Mode is deactivated", end='\n')
+            isAutoMode = False
 
         engine.check()
-        #print("\n")
 
-    #engine.check()
 
 
 
