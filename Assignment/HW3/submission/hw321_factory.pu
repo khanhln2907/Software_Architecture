@@ -35,6 +35,8 @@ class Device{
 
 class LightFactory{
     #_lm: LightManager 
+    +createLight(name : String)
+    #createConcreteLight(name: String)
 }
 
 ' Concrete Classes
@@ -60,11 +62,11 @@ class DimmLight{
 }
 
 class SwitchLightFactory{
-    +createLight(name: String)
+    #createConcreteLight(name: String)
 }
 
 class DimmLightFactory{
-    +createLight(name: String)
+    #createConcreteLight(name: String)
 }
 
 

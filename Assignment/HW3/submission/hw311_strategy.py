@@ -14,7 +14,7 @@ class PacketHandler:
     """
     This class contains the data packet and the assigned policy
     """
-    def __init__(self, data_packet):
+    def __init__(self, data_packet: packet):
         self.packet = data_packet
         self.policy = PacketStrategy()
 
@@ -28,14 +28,14 @@ class PacketHandler:
         """
         This method calls the setup policy to perform the data prcocessing
         """
-        self.policy.process(self.packet.data)
+        self.policy.process(self.packet)
 
 class PacketStrategy: # pylint: disable=too-few-public-methods
     """
     This abstract class declares the common interfaces
     for the child class with different strategies
     """
-    def process(self, data):
+    def process(self, p: packet):
         """
         Child class must declare the strategy
         """
@@ -45,34 +45,25 @@ class SSHHandler(PacketStrategy): # pylint: disable=too-few-public-methods
     """
     This class handles SSH packet
     """
-    def process(self, data):
-        """
-        Child class must declare the strategy
-        """
+    def process(self, p: packet):
         print("Processing SSH")
-        print(data)
+        print(p.data)
 
 class TLSHandler(PacketStrategy): # pylint: disable=too-few-public-methods
     """
     This class handles TLS packet
     """
-    def process(self, data):
-        """
-        Child class must declare the strategy
-        """
+    def process(self, p: packet):
         print("Processing TLS")
-        print(data)
+        print(p.data)
 
 class IPsecHandler(PacketStrategy): # pylint: disable=too-few-public-methods
     """
     This class handles IPSEC packet
     """
-    def process(self, data):
-        """
-        Child class must declare the strategy
-        """
-        print("Processing IPSEC")
-        print(data)
+    def process(self, p: packet):
+        print("Processing IPsec")
+        print(p.data)
 
 def main():
     """
@@ -83,10 +74,10 @@ def main():
     # Create the packet handler
     handler = PacketHandler(my_packet)
     # Set the policy to the handler
-    my_policy = SSHHandler()
+    my_policy = TLSHandler()
     handler.setpolicy(my_policy)
     # process the packet
     handler.process()
 
 
-main()
+#main()
