@@ -1,0 +1,130 @@
+@startuml
+' Settings
+' ============================
+
+' use +,#,- instead of icons
+'skinparam classAttributeIconSize 0
+
+' horizontal distance in px
+skinparam nodesep 100 
+
+' vertical distance in px
+skinparam ranksep 100
+
+' use only straight lines (ortho/polyline)
+skinparam linetype polyline
+
+' title
+title MATH
+
+' The fundamental
+' ============================
+Interface Fundamental
+
+class Algebra{
+    Matrices Analysis
+    Coordinate Transformation
+
+}
+
+class Calculus{
+    Fourier Analysis
+}
+
+class Stochastic
+class GameTheory #red
+class GraphTheory #red
+
+Algebra -r-|> Fundamental
+Calculus -r-|> Fundamental
+Stochastic -r-|> Fundamental
+GameTheory -r-|> Fundamental
+GraphTheory -r-|> Fundamental
+
+' The resources
+' ============================
+Interface Tools
+Tools -u-|> Fundamental
+
+class Numeric{
+    Interpolation
+    Extraplation
+    ODE Solvers
+}
+
+class Computation{
+    Algorithms
+    Machine Learning 
+}
+
+class Optimization{
+    Convex Optimization
+}
+
+Numeric -l-|> Tools
+Computation -l-|> Tools
+Optimization -l-|> Tools
+
+' The engineering math
+' ============================
+Interface AppliedMathemmatics
+AppliedMathemmatics -u-|> Fundamental
+AppliedMathemmatics -u-|> Tools
+
+class Analysis
+class ControlTheory{
+    Linear Control
+    Non-linear Control
+    Model-based Control
+    Information-oriented Control
+    Multi-Agent System 
+
+    -Adaptive Control
+    -Robust Control
+}
+class SignalProcessing{
+    FFT Analysis
+    Correlation
+    Filtering    
+}
+
+class MicrowavesEngineering{
+    Circuit Analysis
+}
+
+Analysis -r-|> AppliedMathemmatics
+ControlTheory -r-|> AppliedMathemmatics
+SignalProcessing -r-|> AppliedMathemmatics
+MicrowavesEngineering -r-|> AppliedMathemmatics
+
+
+' The applications
+' ============================
+Interface Applications
+
+
+class RadarProcessing{
+    Detection
+    Tracking
+}
+
+RadarProcessing -r-|> Applications
+RadarProcessing -u-|> MicrowavesEngineering
+
+class Navigation{
+    -Trajectory Planning 
+}
+Navigation -r-|> Applications
+Navigation -u-|> SignalProcessing
+
+class SystemControl{
+
+}
+SystemControl -r-|> Applications
+SystemControl -u-|> ControlTheory
+SystemControl -u-|> SignalProcessing
+
+
+Applications -u-|> AppliedMathemmatics
+
+@enduml

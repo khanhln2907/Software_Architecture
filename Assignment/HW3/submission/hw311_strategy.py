@@ -26,7 +26,7 @@ class PacketHandler:
 
     def process(self):
         """
-        This method calls the setup policy to perform the data prcocessing
+        This method calls the setup policy to perform the data processing
         """
         self.policy.process(self.packet)
 
