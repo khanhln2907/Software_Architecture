@@ -1,0 +1,100 @@
+@startuml
+' Settings
+' ============================
+
+' use +,#,- instead of icons
+'skinparam classAttributeIconSize 1
+
+' horizontal distance in px
+skinparam nodesep 80 
+
+' vertical distance in px
+skinparam ranksep 80
+
+' use only straight lines (ortho/polyline)
+'skinparam linetype ortho
+
+' title
+title Software Architecture of Sensor Subsystem
+
+' API
+class QActive{
+
+}
+
+' Abstract classes
+class SensorBase{
+    -sampleTimer: QTimeEvt
+    -referenceTime: Timestamp_t
+    # PacketReceivedMsg: static const QEvt
+    +start()
+    #loop()
+    #postSample()
+    #printSensorID()
+    #get_SensorID() = 0
+    #size_t get_SampleRate() = 0
+    #Q_STATE_DECL(initial)
+    #Q_STATE_DECL(sampling)
+}
+
+class SerialSensorBase{
+   	' #virtual Q_STATE_DECL(connected);
+	' #virtual Q_STATE_DECL(disconnected);
+	' #QP::QState on_initial();
+    ' #virtual byte const * const getHeaderBytes() = 0;
+	' #virtual size_t const getHeaderBytesCount() = 0;
+    ' #virtual const SensorIDs get_SensorID() = 0
+    ' #virtual void loop();
+}
+
+class SPISensorBase{
+    
+}
+
+class IMUBase{
+
+}
+
+
+class ADIS16465{
+
+}
+
+class VN200{
+
+}
+
+' Relation
+QActive <|-- SensorBase
+
+SensorBase <|-- SerialSensorBase
+SensorBase <|-- SPISensorBase
+
+SerialSensorBase <|-- VN200
+IMUBase <|-- VN200
+
+SPISensorBase <|-- ADIS16465
+IMUBase <|-- ADIS16465
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@enduml
